@@ -1,0 +1,63 @@
+{
+    "users": [
+      {
+        "userId": "User001",
+        "ageGroup": "31-50",
+        "householdSize": 3,
+        "region": "Suburban",
+        "housing": {
+          "homeType": "House",
+          "homeSize": "Large",
+          "insulation": "Yes",
+          "energySavingAppliances": "No"
+        },
+        "energyUse": {
+          "primaryHeatingSource": "Gas",
+          "electricityUsage": "High",
+          "renewableEnergyUsage": "No"
+        },
+        "transportation": {
+          "vehicleOwnership": "Gasoline",
+          "kilometersDrivenAnnually": 15000,
+          "publicTransportUse": "No",
+          "airTravel": "4+ flights/year"
+        },
+        "diet": {
+          "dietType": "Meat-based",
+          "meatDairyConsumptionFrequency": "Daily",
+          "locallySourcedFood": "No",
+          "foodWaste": "Some"
+        }
+      },
+      {
+        "userId": "User002",
+        "ageGroup": "18-30",
+        "householdSize": 1,
+        "region": "Urban",
+        "housing": {
+          "homeType": "Apartment",
+          "homeSize": "Small",
+          "insulation": "No",
+          "energySavingAppliances": "Yes"
+        },
+        "energyUse": {
+          "primaryHeatingSource": "Electric",
+          "electricityUsage": "Low",
+          "renewableEnergyUsage": "Yes"
+        },
+        "transportation": {
+          "vehicleOwnership": "None",
+          "kilometersDrivenAnnually": 0,
+          "publicTransportUse": "Yes",
+          "airTravel": "None"
+        },
+        "diet": {
+          "dietType": "Vegan",
+          "meatDairyConsumptionFrequency": "Rarely",
+          "locallySourcedFood": "Yes",
+          "foodWaste": "None"
+        }
+      }
+    ]
+  }
+  

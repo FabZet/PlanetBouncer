@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Impact Chatbot</title>
+    <style>
+        /* Basic chatbot styling */
+        .chatbot-container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+        }
+        #chatbox {
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chatbot-container">
+    <div id="chatbox"></div>
+    <div id="options"></div>
+    <input type="text" id="userInput" placeholder="Your answer..." onkeypress="if(event.key === 'Enter') handleTextResponse()" />
+    <button onclick="handleTextResponse()">Send</button>
+</div>
+
+<script>
+    let currentQuestion = 0;
+    let answers = {};
+
+    // Store the answers and result in local storage
+    function storeResults() {
+        const resultData = {
+            answers: answers,
+            earths: calculateEarths()  // A helper function that returns the Earths value
+        };
+
+        // Store the resultData object in local storage as a string
+        localStorage.setItem('userResults', JSON.stringify(resultData));
+        
+        // Optionally, log or confirm it's saved
+        console.log("Results saved to local storage:", resultData);
+    }
+
+    // Retrieve the results from local storage (if needed later)
+    function retrieveResults() {
+        const storedData = localStorage.getItem('userResults');
+        if (storedData) {
+            return JSON.parse(storedData);  // Parse and return the stored data
+        }
+        return null;  // No stored data found
+    }
+
+    // Clear the stored data (optional function to reset)
+    function clearResults() {
+        localStorage.removeItem('userResults');
+        console.log("Results cleared from local storage");
+    }
+
+    // List of questions and possible answers
+    const questions = [
+        {
+            question: "What type of home do you live in?",
+            options: ["House", "Apartment"]
+        },
+        {
+            question: "How many people live in your home?",
+            options: ["1", "2", "3", "4+"]
+        },
+        {
+            question: "What is the size of your home (in square meters)?",
+            options: ["< 50", "50-100", "> 100"]
+        },
+        {
+            question: "Is your home well-insulated?",
+            options: ["Yes", "No"]
+        },
+        {
+            question: "Do you use energy-saving appliances?",
+            options: ["Yes", "No"]
+        }
+    ];
+
+    // Function to display the question and answer options
+    function askQuestion() {
+        const chatbox = document.getElementById("chatbox");
+        const optionsDiv = document.getElementById("options");
+
+        // Display the question
+        chatbox.innerHTML += `<p><strong>Chatbot:</strong> ${questions[currentQuestion].question}</p>`;
+
+        // Clear previous buttons
+        optionsDiv.innerHTML = '';
+
+        // Display buttons for the options
+        questions[currentQuestion].options.forEach(option => {
+            optionsDiv.innerHTML += `<button class="button" onclick="handleButtonResponse('${option}')">${option}</button>`;
+        });
+
+        // Scroll to bottom
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    // Handle user input when a button is clicked
+    function handleButtonResponse(answer) {
+        const chatbox = document.getElementById("chatbox");
+
+        // Save the user's answer
+        answers[currentQuestion] = answer;
+
+        // Display the user's response
+        chatbox.innerHTML += `<p><strong>You:</strong> ${answer}</p>`;
+
+        // Move to the next question
+        nextQuestion();
+    }
+
+    // Handle user input when text is entered
+    function handleTextResponse() {
+        const userInput = document.getElementById("userInput").value;
+        const chatbox = document.getElementById("chatbox");
+
+        // If the input is empty, do nothing
+        if (!userInput.trim()) return;
+
+        // Save the user's answer
+        answers[currentQuestion] = userInput;
+
+        // Display the user's response
+        chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+        // Clear the input field
+        document.getElementById("userInput").value = '';
+
+        // Move to the next question
+        nextQuestion();
+    }
+
+    // Retrieve and display the results in the chatbox when the chatbot starts
+    function showStoredResults() {
+        const storedResults = retrieveResults();
+        if (storedResults) {
+            console.log("Retrieved from local storage:", storedResults);
+            document.getElementById("chatbox").innerHTML += `<p><strong>Previous Result:</strong> You needed ${storedResults.earths} planet Earths.</p>`;
+        } else {
+            console.log("No results found in local storage.");
+        }
+    }
+
+    // Call this function to display stored results when the chatbot starts
+    showStoredResults();
+
+    // Move to the next question
+    function nextQuestion() {
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+            askQuestion();
+        } else {
+            // After the last question, calculate the number of Earths
+            calculateEarths();
+
+            document.getElementById("chatbox").innerHTML += "<p><strong>Chatbot:</strong> Thank you for answering the questions!</p>";
+
+            // Hide the buttons after the result is shown
+            document.getElementById("options").style.display = "none";
+
+            // Store the results in local storage
+            storeResults();
+
+            console.log(answers);  // Log the answers for processing
+        }
+
+        // Scroll to the bottom of the chatbox
+        document.getElementById("chatbox").scrollTop = document.getElementById("chatbox").scrollHeight;
+    }
+
+    // Calculate the number of Earths based on answers
+    function calculateEarths() {
+        let earths = 1;  // Start with 1 Earth as a base
+
+        // Example logic for calculating Earths based on the answers
+        earths += answers[0] === "House" ? 0.2 : 0;  // Home type
+        earths += answers[1] === "1" ? 0.2 : answers[1] === "4+" ? -0.1 : 0;  // Number of people
+        earths += answers[2] === "> 100" ? 0.3 : 0;  // Home size
+        earths += answers[3] === "No" ? 0.2 : 0;  // Insulation
+        earths += answers[4] === "No" ? 0.1 : 0;  // Appliances
+
+        // Ensure a minimum of 1 Earth
+        earths = earths < 1 ? 1 : earths;
+
+        // Display the result
+        document.getElementById("chatbox").innerHTML += `<p><strong>Chatbot:</strong> Based on your lifestyle, you would need ${earths.toFixed(1)} planet Earths to sustain it.</p>`;
+        console.log(`Number of Earths: ${earths}`);
+    }
+
+    // Start the chatbot interaction
+    askQuestion();
+
+</script>
+
+</body>
+</html>
