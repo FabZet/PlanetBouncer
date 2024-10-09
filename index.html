@@ -340,17 +340,27 @@
             const userData = {
                 homeType: document.getElementById('homeType').value,
                 homeSize: document.getElementById('homeSize').value,
-                insulation: document.querySelector('input[name="insulation"]:checked').value,
-                appliances: document.querySelector('input[name="energySavingAppliances"]:checked').value,
+                insulation: document.querySelector('input[name="insulation"]:checked') 
+                    ? document.querySelector('input[name="insulation"]:checked').value 
+                    : null,  // Handle the case where no radio button is selected
+                appliances: document.querySelector('input[name="energySavingAppliances"]:checked')
+                    ? document.querySelector('input[name="energySavingAppliances"]:checked').value
+                    : null,  // Handle the case where no radio button is selected
                 energyUsage: document.getElementById('energyUsage').value,
-                renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked').value,
+                renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked')
+                    ? document.querySelector('input[name="renewableEnergy"]:checked').value
+                    : null,  // Handle the case where no radio button is selected
                 vehicleType: document.getElementById('vehicleType').value,
                 kilometersDriven: document.getElementById('kilometersDriven').value,
-                publicTransport: document.querySelector('input[name="publicTransport"]:checked').value,
+                publicTransport: document.querySelector('input[name="publicTransport"]:checked')
+                    ? document.querySelector('input[name="publicTransport"]:checked').value
+                    : null,  // Handle the case where no radio button is selected
                 airTravel: document.getElementById('airTravel').value,
                 dietType: document.getElementById('dietType').value,
                 meatFrequency: document.getElementById('meatFrequency').value,
-                locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked').value,
+                locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked')
+                    ? document.querySelector('input[name="locallySourcedFood"]:checked').value
+                    : null,  // Handle the case where no radio button is selected
                 foodWaste: document.getElementById('foodWaste').value
             };
         
