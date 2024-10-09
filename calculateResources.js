@@ -5,34 +5,47 @@ function calculateResourceOveruse(userData) {
     
     // Housing impact
     let housingImpact = 0;
-    if (userData.homeType === "Apartment") housingImpact += 10;
-    else if (userData.homeType === "House") housingImpact += 20;
+    if (userData.homeType === "Apartment") housingImpact += 8;
+    else if (userData.homeType === "House") housingImpact += 25;
 
-    if (userData.insulation === "False") housingImpact += 5; // More resources used for heating/cooling
+    if (userData.insulation === "False") housingImpact += 10;
+    else housingImpact += 3;
 
     // Energy impact
     let energyImpact = 0;
     if (userData.energyUsage === "Low") energyImpact += 10;
-    else if (userData.energyUsage === "Medium") energyImpact += 20;
-    else if (userData.energyUsage === "High") energyImpact += 30;
+    else if (userData.energyUsage === "Medium") energyImpact += 25;
+    else if (userData.energyUsage === "High") energyImpact += 40;
 
-    if (userData.renewableEnergy === "True") energyImpact -= 5; // Renewable energy reduces resource usage
+    if (userData.renewableEnergy === "True") energyImpact -= 10;
+    else energyImpact += 10;
 
     // Transportation impact
     let transportImpact = 0;
-    if (userData.vehicleType === "Gasoline") transportImpact += 30;
-    if (userData.kilometersDriven > 10000) transportImpact += 10;
-    if (userData.publicTransport === "True") transportImpact -= 5; // Public transport reduces resource usage
-    if (userData.airTravel === "4+") transportImpact += 20;
+    if (userData.vehicleType === "Electric") transportImpact += 10;
+    else if (userData.vehicleType === "Gasoline") transportImpact += 35;
+    if (userData.kilometersDriven > 15000) transportImpact += 15;
+    else if (userData.kilometersDriven < 5000) transportImpact += 5;
+
+    if (userData.publicTransport === "True") transportImpact -= 10;
+
+    if (userData.airTravel === "None") transportImpact += 0;
+    else if (userData.airTravel === "1-3") transportImpact += 15;
+    else if (userData.airTravel === "4+") transportImpact += 30;
 
     // Diet impact
     let dietImpact = 0;
-    if (userData.dietType === "Meat-based") dietImpact += 30;
-    else if (userData.dietType === "Vegan") dietImpact += 10;
+    if (userData.dietType === "Meat-based") dietImpact += 35;
+    else if (userData.dietType === "Vegetarian") dietImpact += 15;
+    else if (userData.dietType === "Vegan") dietImpact += 5;
 
-    if (userData.meatFrequency === "Daily") dietImpact += 10;
+    if (userData.meatFrequency === "Daily") dietImpact += 15;
+    else if (userData.meatFrequency === "Weekly") dietImpact += 8;
+    else if (userData.meatFrequency === "Rarely") dietImpact += 3;
+
     if (userData.locallySourcedFood === "True") dietImpact -= 5;
-    if (userData.foodWaste === "A lot") dietImpact += 10;
+    if (userData.foodWaste === "A lot") dietImpact += 15;
+    else if (userData.foodWaste === "Some") dietImpact += 8;
 
     // Total resource consumption
     let totalImpact = housingImpact + energyImpact + transportImpact + dietImpact;
