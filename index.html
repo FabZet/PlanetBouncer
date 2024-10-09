@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="calculateResources.js"></script>
     <title>Planet Bouncer - Questionnaire with GPT</title>
     <style>
         /* General styles */
@@ -348,13 +349,16 @@
                 locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked').value,
                 foodWaste: document.getElementById('foodWaste').value
             };
-
-            // Simulate chatbot output
+        
+            // Call the calculation function
+            const overuseDay = calculateResourceOveruse(userData);
+        
+            // Display the result in the chatbot
             const chatbox = document.getElementById('chatbox');
             chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
             
             setTimeout(function() {
-                const botResponse = "Based on your input, you would use up Earth's resources by the 20th of the month.";
+                const botResponse = `Based on your input, you would use up Earth's resources by day ${overuseDay} of the month.`;
                 chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;
             }, 1000);
