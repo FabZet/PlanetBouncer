@@ -368,14 +368,12 @@
                 prompt = "The user passed a full month without using up the Earth's resources. Congratulate them and provide tips to maintain this.";
             }
 
-
-            console.log('API Key:', process.env.NEXT_PUBLIC_OPENAI_API_KEY);
-            console.log('Prompt:', prompt);
-            console.log('Starting API call...');
-
             
             // Call GPT
             try {
+                console.log('API Key:', process.env.NEXT_PUBLIC_OPENAI_API_KEY);
+                console.log('Prompt:', prompt);
+                console.log('Starting API call...');
                 const gptResponse = await axios.post('https://api.openai.com/v1/completions', {
                     model: "text-davinci-003", 
                     prompt: prompt,
