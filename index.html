@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planet Bouncer - Housing Section with GPT</title>
+    <title>Planet Bouncer - Questionnaire with GPT</title>
     <style>
         /* General styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            height: 100vh; /* Ensure full viewport height */
+            height: 100vh;
             display: flex;
-            justify-content: center; /* Horizontal centering */
-            align-items: center; /* Vertical centering */
+            justify-content: center;
+            align-items: center;
             margin: 0;
         }
-        
+
         .container {
             display: flex;
-            justify-content: space-between; /* Space between the two sections */
+            justify-content: space-between;
             max-width: 1200px;
-            width: 100%; /* Full width */
-            margin: 0 auto; /* Centering */
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
         }
-        
-        .housing-section, .chatbot-section {
+
+        .question-section, .chatbot-section {
             background-color: #fff;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
         }
-        
-        .housing-section {
+
+        .question-section {
             flex: 1;
-            margin-right: 20px; /* Space between Housing and Chatbot */
+            margin-right: 20px;
+            max-height: 85vh;
         }
-        
+
         .chatbot-section {
             width: 400px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         h2 {
@@ -45,7 +52,54 @@
             color: #333;
         }
 
-        /* Chat area styling */
+        .question {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .toggle {
+            display: flex;
+            justify-content: space-between;
+            max-width: 250px;
+            margin: 10px 0;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-section button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-section button:hover {
+            background-color: #0056b3;
+        }
+
         .chatbox {
             height: 400px;
             overflow-y: auto;
@@ -95,124 +149,171 @@
         .input-area button:hover {
             background-color: #0056b3;
         }
-
-        /* Question styling */
-        .question {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-size: 16px;
-            color: #555;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .dropdown {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        /* Toggle buttons (radio inputs) */
-        .toggle {
-            display: flex;
-            justify-content: space-between;
-            max-width: 250px;
-            margin: 10px 0;
-        }
-
-        input[type="radio"] {
-            margin-right: 8px;
-        }
-
-        label[for="insulationTrue"], label[for="insulationFalse"], 
-        label[for="appliancesTrue"], label[for="appliancesFalse"] {
-            font-size: 16px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Housing Section -->
-        <div class="housing-section">
-            <h2>Housing</h2>
+        <!-- Question Section -->
+        <div class="question-section">
+            <h2>Planet Bouncer Questionnaire</h2>
 
-            <!-- Home Type -->
-            <div class="question">
-                <label for="homeType">What type of home do you live in?</label>
-                <select id="homeType" class="dropdown">
-                    <option value="Apartment">Apartment</option>
-                    <option value="House">House</option>
-                    <option value="Condo">Condo</option>
-                    <option value="Townhouse">Townhouse</option>
-                </select>
-            </div>
+            <!-- Housing Section -->
+            <div class="housing-section">
+                <h3>Housing</h3>
 
-            <!-- Home Size -->
-            <div class="question">
-                <label for="homeSize">What is the size of your home?</label>
-                <select id="homeSize" class="dropdown">
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                </select>
-            </div>
+                <div class="question">
+                    <label for="homeType">What type of home do you live in?</label>
+                    <select id="homeType" class="dropdown">
+                        <option value="Apartment">Apartment</option>
+                        <option value="House">House</option>
+                        <option value="Condo">Condo</option>
+                        <option value="Townhouse">Townhouse</option>
+                    </select>
+                </div>
 
-            <!-- Insulation -->
-            <div class="question">
-                <label>Is your home well-insulated?</label>
-                <div class="toggle">
-                    <input type="radio" id="insulationTrue" name="insulation" value="True">
-                    <label for="insulationTrue">Yes</label>
-                    <input type="radio" id="insulationFalse" name="insulation" value="False">
-                    <label for="insulationFalse">No</label>
+                <div class="question">
+                    <label for="homeSize">What is the size of your home?</label>
+                    <select id="homeSize" class="dropdown">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label>Is your home well-insulated?</label>
+                    <div class="toggle">
+                        <input type="radio" id="insulationTrue" name="insulation" value="True">
+                        <label for="insulationTrue">Yes</label>
+                        <input type="radio" id="insulationFalse" name="insulation" value="False">
+                        <label for="insulationFalse">No</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>Do you use energy-saving appliances?</label>
+                    <div class="toggle">
+                        <input type="radio" id="appliancesTrue" name="energySavingAppliances" value="True">
+                        <label for="appliancesTrue">Yes</label>
+                        <input type="radio" id="appliancesFalse" name="energySavingAppliances" value="False">
+                        <label for="appliancesFalse">No</label>
+                    </div>
                 </div>
             </div>
 
-            <!-- Energy-Saving Appliances -->
-            <div class="question">
-                <label>Do you use energy-saving appliances?</label>
-                <div class="toggle">
-                    <input type="radio" id="appliancesTrue" name="energySavingAppliances" value="True">
-                    <label for="appliancesTrue">Yes</label>
-                    <input type="radio" id="appliancesFalse" name="energySavingAppliances" value="False">
-                    <label for="appliancesFalse">No</label>
+            <!-- Energy Section -->
+            <div class="energy-section">
+                <h3>Energy Use</h3>
+
+                <div class="question">
+                    <label for="energyUsage">How much electricity do you use per month?</label>
+                    <select id="energyUsage" class="dropdown">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label for="renewableEnergy">Do you use renewable energy?</label>
+                    <div class="toggle">
+                        <input type="radio" id="renewableYes" name="renewableEnergy" value="True">
+                        <label for="renewableYes">Yes</label>
+                        <input type="radio" id="renewableNo" name="renewableEnergy" value="False">
+                        <label for="renewableNo">No</label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="energy-section">
-        <h2>Energy Use</h2>
-        <!-- Add Energy Use Questions -->
-        <div class="question">
-            <label for="energyUsage">How much electricity do you use per month?</label>
-            <select id="energyUsage" class="dropdown">
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select>
-        </div>
-        <div class="question">
-            <label for="renewableEnergy">Do you use renewable energy?</label>
-            <div class="toggle">
-                <input type="radio" id="renewableYes" name="renewableEnergy" value="True">
-                <label for="renewableYes">Yes</label>
-                <input type="radio" id="renewableNo" name="renewableEnergy" value="False">
-                <label for="renewableNo">No</label>
+            <!-- Transportation Section -->
+            <div class="transportation-section">
+                <h3>Transportation</h3>
+
+                <div class="question">
+                    <label for="vehicleType">Do you own a vehicle? If so, what type?</label>
+                    <select id="vehicleType" class="dropdown">
+                        <option value="None">None</option>
+                        <option value="Gasoline">Gasoline</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label for="kilometersDriven">How many kilometers do you drive annually?</label>
+                    <input type="number" id="kilometersDriven" placeholder="e.g. 12000" class="dropdown">
+                </div>
+
+                <div class="question">
+                    <label>Do you regularly use public transportation?</label>
+                    <div class="toggle">
+                        <input type="radio" id="publicTransportYes" name="publicTransport" value="True">
+                        <label for="publicTransportYes">Yes</label>
+                        <input type="radio" id="publicTransportNo" name="publicTransport" value="False">
+                        <label for="publicTransportNo">No</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label for="airTravel">How many flights do you take annually?</label>
+                    <select id="airTravel" class="dropdown">
+                        <option value="None">None</option>
+                        <option value="1-3">1-3</option>
+                        <option value="4+">4+</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Diet Section -->
+            <div class="diet-section">
+                <h3>Diet</h3>
+
+                <div class="question">
+                    <label for="dietType">What type of diet do you follow?</label>
+                    <select id="dietType" class="dropdown">
+                        <option value="Meat-based">Meat-based</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Vegan">Vegan</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label for="meatFrequency">How often do you consume meat or dairy?</label>
+                    <select id="meatFrequency" class="dropdown">
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Rarely">Rarely</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label>Do you try to buy locally sourced food?</label>
+                    <div class="toggle">
+                        <input type="radio" id="localYes" name="locallySourcedFood" value="True">
+                        <label for="localYes">Yes</label>
+                        <input type="radio" id="localNo" name="locallySourcedFood" value="False">
+                        <label for="localNo">No</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label for="foodWaste">How much food do you waste?</label>
+                    <select id="foodWaste" class="dropdown">
+                        <option value="None">None</option>
+                        <option value="Some">Some</option>
+                        <option value="A lot">A lot</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-section">
+                <button id="submitBtn">Submit</button>
             </div>
         </div>
-    </div>
 
-        <!-- Submit Button -->
-        <div class="submit-section">
-        <button id="submitBtn">Submit</button>
-        </div>
-        
         <!-- Chatbot Section -->
         <div class="chatbot-section">
             <h2>Chat with Planet Bouncer</h2>
@@ -225,49 +326,48 @@
     </div>
 
     <script>
-        // Capture user input for each question and log the values
-        document.getElementById('homeType').addEventListener('change', function() {
-            let homeType = this.value;
-            console.log("Home Type: ", homeType);
+        // Capture all answers and submit
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const userData = {
+                homeType: document.getElementById('homeType').value,
+                homeSize: document.getElementById('homeSize').value,
+                insulation: document.querySelector('input[name="insulation"]:checked').value,
+                appliances: document.querySelector('input[name="energySavingAppliances"]:checked').value,
+                energyUsage: document.getElementById('energyUsage').value,
+                renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked').value,
+                vehicleType: document.getElementById('vehicleType').value,
+                kilometersDriven: document.getElementById('kilometersDriven').value,
+                publicTransport: document.querySelector('input[name="publicTransport"]:checked').value,
+                airTravel: document.getElementById('airTravel').value,
+                dietType: document.getElementById('dietType').value,
+                meatFrequency: document.getElementById('meatFrequency').value,
+                locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked').value,
+                foodWaste: document.getElementById('foodWaste').value
+            };
+
+            // Simulate chatbot output
+            const chatbox = document.getElementById('chatbox');
+            chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
+            
+            setTimeout(function() {
+                const botResponse = "Based on your input, you would use up Earth's resources by the 20th of the month.";
+                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }, 1000);
         });
 
-        document.getElementById('homeSize').addEventListener('change', function() {
-            let homeSize = this.value;
-            console.log("Home Size: ", homeSize);
-        });
-
-        document.querySelectorAll('input[name="insulation"]').forEach((element) => {
-            element.addEventListener('change', function() {
-                let insulation = this.value;
-                console.log("Insulation: ", insulation);
-            });
-        });
-
-        document.querySelectorAll('input[name="energySavingAppliances"]').forEach((element) => {
-            element.addEventListener('change', function() {
-                let appliances = this.value;
-                console.log("Energy Saving Appliances: ", appliances);
-            });
-        });
-
-        // Handle the Chatbot functionality
+        // Handle user input for chatbot
         document.getElementById('sendBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
             const chatbox = document.getElementById('chatbox');
             
             if (userInput.trim() !== '') {
-                // Display user's message
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
-
-                // Clear input field
                 document.getElementById('userInput').value = '';
 
-                // Simulate a bot response
                 setTimeout(function() {
                     const botResponse = "This is Planet Bouncer's response.";
                     chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
-                    
-                    // Scroll chatbox to the bottom
                     chatbox.scrollTop = chatbox.scrollHeight;
                 }, 1000);
             }
