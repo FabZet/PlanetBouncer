@@ -335,6 +335,9 @@
     </div>
 
     <script>
+        // Define the OpenAI API key explicitly
+        const OPENAI_API_KEY = `${NEXT_PUBLIC_OPENAI_API_KEY}`;  // Ensure the API key is accessible
+        
         // Capture all answers and submit
         document.getElementById('submitBtn').addEventListener('click', async function() {
             const userData = {
