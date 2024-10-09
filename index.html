@@ -327,15 +327,62 @@
             </div>
         </div>
 
-        <!-- Chatbot Section -->
-        <div class="chatbot-section">
-            <h2>Chat with Planet Bouncer</h2>
-            <div class="chatbox" id="chatbox"></div>
-            <div class="input-area">
-                <input type="text" id="userInput" placeholder="Type your message...">
-                <button id="sendBtn">Send</button>
+            <!-- Chatbot Section -->
+            <div class="chatbot-section">
+                <h2>Chat with Planet Bouncer</h2>
+                <div class="chatbox" id="chatbox"></div>
+                <div class="input-area">
+                    <input type="text" id="userInput" placeholder="Type your message...">
+                    <button id="sendBtn">Send</button>
+                </div>
             </div>
-        </div>
+            
+            <script>
+            // Event listener for Send button
+            document.getElementById('sendBtn').addEventListener('click', function() {
+                handleUserInput();
+            });
+            
+            // Event listener for Enter key
+            document.getElementById('userInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    handleUserInput();
+                }
+            });
+            
+            // Function to handle user input
+            function handleUserInput() {
+                const userInput = document.getElementById('userInput').value;
+            
+                // If input is empty, do nothing
+                if (!userInput.trim()) return;
+            
+                // Display the user message in the chatbox
+                const chatbox = document.getElementById('chatbox');
+                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
+            
+                // Clear the input field after sending
+                document.getElementById('userInput').value = '';
+            
+                // Call GPT or further logic to handle the response
+                handleGPTResponse(userInput);
+                
+                chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+            }
+            
+            // Placeholder function to simulate GPT response
+            function handleGPTResponse(userInput) {
+                const chatbox = document.getElementById('chatbox');
+            
+                // Example response - you would replace this with the real API response
+                const botResponse = `You asked: "${userInput}". Here's my response!`;
+            
+                // Display the GPT response in the chatbox
+                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+            }
+            </script>
+
     </div>
 
     <script>
