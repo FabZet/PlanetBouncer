@@ -8,6 +8,10 @@
 
     <!-- Include Axios from a CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        window.OPENAI_API_KEY = "{{ NEXT_PUBLIC_OPENAI_API_KEY }}";
+    </script>
     
     <style>
         /* General styles */
@@ -336,8 +340,7 @@
 
     <script>
         // Define the OpenAI API key explicitly
-        const OPENAI_API_KEY = `${NEXT_PUBLIC_OPENAI_API_KEY}`;  // Ensure the API key is accessible
-        console.log(OPENAI_API_KEY);
+        const OPENAI_API_KEY = window.OPENAI_API_KEY;
         
         // Capture all answers and submit
         document.getElementById('submitBtn').addEventListener('click', async function() {
