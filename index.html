@@ -381,9 +381,6 @@
             
             // Call GPT
             try {
-                console.log('API Key:', process.env.NEXT_PUBLIC_OPENAI_API_KEY);
-                console.log('Prompt:', prompt);
-                console.log('Starting API call...');
                 const gptResponse = await axios.post('https://api.openai.com/v1/completions', {
                     model: "text-davinci-003", 
                     prompt: prompt,
@@ -392,7 +389,7 @@
                 }, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`  // Accessing API key from Netlify environment
+                        'Authorization': `Bearer ${NEXT_PUBLIC_OPENAI_API_KEY}`  // Use the key without process.env
                     }
                 });
             
