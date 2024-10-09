@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="calculateResources.js"></script>
     <title>Planet Bouncer - Questionnaire with GPT</title>
+
+    <!-- Include Axios from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
     <style>
         /* General styles */
         body {
@@ -332,7 +336,7 @@
 
     <script>
         // Capture all answers and submit
-        document.getElementById('submitBtn').addEventListener('click', function() {
+        document.getElementById('submitBtn').addEventListener('click', async function() {
             const userData = {
                 homeType: document.getElementById('homeType').value,
                 homeSize: document.getElementById('homeSize').value,
@@ -353,31 +357,38 @@
             // Call the calculation function
             const overuseDay = calculateResourceOveruse(userData);
         
-            // Display the result in the chatbot
             const chatbox = document.getElementById('chatbox');
             chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
-            
-            setTimeout(function() {
-                const botResponse = `Based on your input, you would use up Earth's resources by day ${overuseDay} of the month.`;
-                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
+        
+            // Prepare a prompt to send to GPT based on the calculation
+            let prompt = `Based on the user's input, they would use up Earth's resources by day ${overuseDay} of the month. Please provide some personalized advice.`;
+        
+            // Adjust the message if they passed a full month
+            if (overuseDay >= 30) {
+                prompt = "The user passed a full month without using up the Earth's resources. Congratulate them and provide tips to maintain this.";
+            }
+        
+            // Call GPT
+            try {
+                const gptResponse = await axios.post('https://api.openai.com/v1/completions', {
+                    model: "text-davinci-003", // Or use a different GPT model if preferred
+                    prompt: prompt,
+                    max_tokens: 150,  // Limit the response length
+                    temperature: 0.7  // Controls the creativity of GPT
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `API key secret`  // Replace with your API key
+                    }
+                });
+        
+                const botMessage = gptResponse.data.choices[0].text.trim();
+                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botMessage}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;
-            }, 1000);
-        });
-
-        // Handle user input for chatbot
-        document.getElementById('sendBtn').addEventListener('click', function() {
-            const userInput = document.getElementById('userInput').value;
-            const chatbox = document.getElementById('chatbox');
-            
-            if (userInput.trim() !== '') {
-                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
-                document.getElementById('userInput').value = '';
-
-                setTimeout(function() {
-                    const botResponse = "This is Planet Bouncer's response.";
-                    chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
-                    chatbox.scrollTop = chatbox.scrollHeight;
-                }, 1000);
+        
+            } catch (error) {
+                console.error('GPT API call failed:', error);
+                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Oops! Something went wrong. Please try again later.</div>`;
             }
         });
     </script>
