@@ -186,6 +186,33 @@
             </div>
         </div>
 
+        <div class="energy-section">
+        <h2>Energy Use</h2>
+        <!-- Add Energy Use Questions -->
+        <div class="question">
+            <label for="energyUsage">How much electricity do you use per month?</label>
+            <select id="energyUsage" class="dropdown">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+        <div class="question">
+            <label for="renewableEnergy">Do you use renewable energy?</label>
+            <div class="toggle">
+                <input type="radio" id="renewableYes" name="renewableEnergy" value="True">
+                <label for="renewableYes">Yes</label>
+                <input type="radio" id="renewableNo" name="renewableEnergy" value="False">
+                <label for="renewableNo">No</label>
+            </div>
+        </div>
+    </div>
+
+        <!-- Submit Button -->
+        <div class="submit-section">
+        <button id="submitBtn">Submit</button>
+        </div>
+        
         <!-- Chatbot Section -->
         <div class="chatbot-section">
             <h2>Chat with Planet Bouncer</h2>
