@@ -388,24 +388,27 @@
             
             // Call GPT
             try {
-                const gptResponse = await axios.post('https://api.openai.com/v1/completions', {
-                    model: "gpt-3.5-turbo", 
-                    prompt: prompt,
-                    max_tokens: 150, 
-                    temperature: 0.7 
+                const gptResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
+                    model: "gpt-3.5-turbo",  // Switch to a supported model
+                    messages: [
+                        { role: "system", content: "You are a helpful assistant." },
+                        { role: "user", content: prompt }
+                    ],
+                    max_tokens: 150,
+                    temperature: 0.7
                 }, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${OPENAI_API_KEY}`  // Accessing API key from Netlify environment
+                        'Authorization': `Bearer ${OPENAI_API_KEY}`
                     }
                 });
             
-                const botMessage = gptResponse.data.choices[0].text.trim();
+                const botMessage = gptResponse.data.choices[0].message.content.trim();
                 chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botMessage}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;
             
             } catch (error) {
-                console.error('GPT API call failed:', error);
+                console.error('GPT API call failed:', error.response?.data || error.message);
                 chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Oops! Something went wrong. Please try again later.</div>`;
             }
         });
