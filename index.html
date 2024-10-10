@@ -392,29 +392,6 @@
     <script>
         // Define the OpenAI API key explicitly
         const OPENAI_API_KEY = window.OPENAI_API_KEY;
-
-        const chatbox = document.getElementById('chatbox');
-                
-                async function sendMessage(message) {
-                  try {
-                    const response = await fetch('/chat', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ message: message }),
-                    });
-                
-                    const data = await response.json();
-                    if (data.message) {
-                      chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${data.message}</div>`;
-                    } else if (data.error) {
-                      chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Oops! Something went wrong. Please try again later.</div>`;
-                    }
-                  } catch (error) {
-                    console.error('Error sending message:', error);
-                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Oops! Something went wrong. Please try again later.</div>`;
-                  }
-                }
-
         
         // Capture all answers and submit
         document.getElementById('submitBtn').addEventListener('click', async function() {
@@ -479,36 +456,20 @@
                 }, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`
+                        'Authorization': `Bearer ${NEXT_PUBLIC_OPENAI_API_KEY}`
                     }
                 });
             
-            //    const botMessage = gptResponse.data.choices[0].message.content.trim();
-            //    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botMessage}</div>`;
-            //    chatbox.scrollTop = chatbox.scrollHeight;
+            const botMessage = gptResponse.data.choices[0].message.content.trim();
+            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botMessage}</div>`;
+            chatbox.scrollTop = chatbox.scrollHeight;
             
-     //       } catch (error) {
-     //           console.error('GPT API call failed:', error.response?.data || error.message);
-     //           chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Oops! Something went wrong. Please try again later.</div>`;
-     //       }
-     //    });
-
-            app.post('/chat', async (req, res) => {
-              try {
-                const response = await openai.createCompletion({
-                  // ... (Your GPT API call parameters)
-                });
-                res.json({ message: response.data.choices[0].text });
-              } catch (error) {
-                console.error('GPT API call failed:', error);
-                res.status(500).json({ error: 'Something went wrong' });
-              }
-            });
-            
-            app.listen(3000, () => console.log('Server listening on port 3000'));
-
-            });
-                
+            } catch (error) {
+            console.error('GPT API call failed:', error.response?.data || error.message);
+            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Oops! Something went wrong. Please try again later.</div>`;
+            }
+         });
+    
     </script> 
 </body>
 </html>
