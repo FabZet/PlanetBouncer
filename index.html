@@ -441,12 +441,7 @@
             }
 
             
-            // Call GPT
-            const express = require('express');
-            const { Configuration, OpenAIApi } = require('openai');
-            
-            const app = express();
-            
+            // Call GPT 
             try {
                 console.log(OPENAI_API_KEY);
                 const gptResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
