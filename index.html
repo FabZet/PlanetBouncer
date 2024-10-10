@@ -379,7 +379,7 @@
                 const botResponse = `You asked: "${userInput}". Here's my response!`;
             
                 // Display the GPT response in the chatbox
-                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botResponse}</div>`;
+                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
             }
             </script>
@@ -452,12 +452,12 @@
                 });
             
                 const botMessage = gptResponse.data.choices[0].message.content.trim();
-                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botMessage}</div>`;
+                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botMessage}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;
             
             } catch (error) {
                 console.error('GPT API call failed:', error.response?.data || error.message);
-                chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Oops! Something went wrong. Please try again later.</div>`;
+                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Oops! Something went wrong. Please try again later.</div>`;
             }
         });
     </script> 
