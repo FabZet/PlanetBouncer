@@ -7,14 +7,7 @@
     
     <title>Planet Bouncer - Questionnaire with GPT</title>
 
-    
     <script src="calculateResources.js"></script>
-    <!-- Include Axios from a CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        window.OPENAI_API_KEY = "{{ NEXT_PUBLIC_OPENAI_API_KEY }}";
-    </script>
-
     
     <style>
         /* General styles */
@@ -334,71 +327,65 @@
             </div>
         </div>
 
-            <!-- Chatbot Section -->
-            <div class="chatbot-section">
-                <h2>Chat with Planet Bouncer</h2>
-                <div class="chatbox" id="chatbox"></div>
-                <div class="input-area">
-                    <input type="text" id="userInput" placeholder="Type your message...">
-                    <button id="sendBtn">Send</button>
-                </div>
+        <!-- Chatbot Section -->
+        <div class="chatbot-section">
+            <h2>Chat with Planet Bouncer</h2>
+            <div class="chatbox" id="chatbox"></div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button id="sendBtn">Send</button>
             </div>
-            
-            <script>
-            // Event listener for Send button
-            document.getElementById('sendBtn').addEventListener('click', function() {
+        </div>
+
+        <script>
+        // Event listener for Send button
+        document.getElementById('sendBtn').addEventListener('click', function() {
+            handleUserInput();
+        });
+
+        // Event listener for Enter key
+        document.getElementById('userInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
                 handleUserInput();
-            });
-            
-            // Event listener for Enter key
-            document.getElementById('userInput').addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    handleUserInput();
-                }
-            });
-            
-            // Function to handle user input
-            function handleUserInput() {
-                const userInput = document.getElementById('userInput').value;
-            
-                // If input is empty, do nothing
-                if (!userInput.trim()) return;
-            
-                // Display the user message in the chatbox
-                const chatbox = document.getElementById('chatbox');
-                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
-            
-                // Clear the input field after sending
-                document.getElementById('userInput').value = '';
-            
-                // Call GPT or further logic to handle the response
-                handleGPTResponse(userInput);
-                
-                chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
             }
-            
-            // Placeholder function to simulate GPT response
-            function handleGPTResponse(userInput) {
-                const chatbox = document.getElementById('chatbox');
-            
-                // Example response - you would replace this with the real API response
-                const botResponse = `You asked: "${userInput}". I'm still waiting to be connected to OpenAI... In the meantime, why not try the Questionnaire on the left? Discover when, this month, you’ll have used up your share of Earth's resources and might need to look for a new planet to call home!`;
-            
-                // Display the GPT response in the chatbox
-                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
-                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
-            }
-            </script>
+        });
 
-    </div>
+        // Function to handle user input
+        function handleUserInput() {
+            const userInput = document.getElementById('userInput').value;
 
-    
-    <script>
-        // Define the OpenAI API key explicitly
-        const OPENAI_API_KEY = window.OPENAI_API_KEY;
-        
+            // If input is empty, do nothing
+            if (!userInput.trim()) return;
+
+            // Display the user message in the chatbox
+            const chatbox = document.getElementById('chatbox');
+            chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
+
+            // Clear the input field after sending
+            document.getElementById('userInput').value = '';
+
+            // Simulated bot response
+            handleBotResponse(userInput);
+
+            chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+        }
+
+        // Placeholder function to simulate bot response
+        function handleBotResponse(userInput) {
+            const chatbox = document.getElementById('chatbox');
+
+            // Example response
+            const botResponse = `You asked: "${userInput}". I'm still waiting to be connected to OpenAI... In the meantime, why not try the Questionnaire on the left? Discover when, this month, you’ll have used up your share of Earth's resources and might need to look for a new planet to call home!`;
+
+            // Display the bot response in the chatbox
+            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
+            chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+        }
+        </script>
+
+        <script>
         // Capture all answers and submit
-        document.getElementById('submitBtn').addEventListener('click', async function() {
+        document.getElementById('submitBtn').addEventListener('click', function() {
             const userData = {
                 homeType: document.getElementById('homeType').value,
                 homeSize: document.getElementById('homeSize').value,
@@ -425,50 +412,18 @@
                     : null,  // Handle the case where no radio button is selected
                 foodWaste: document.getElementById('foodWaste').value
             };
-        
+
             // Call the calculation function
             const overuseDay = calculateResourceOveruse(userData);
         
             const chatbox = document.getElementById('chatbox');
             chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
-        
-            // Prepare a prompt to send to GPT based on the calculation
-            let prompt = `Based on the user's input, they would use up Earth's resources by day ${overuseDay} of the month. Please provide some personalized advice.`;
-        
-            // Adjust the message if they passed a full month
-            if (overuseDay >= 30) {
-                prompt = "The user passed a full month without using up the Earth's resources. Congratulate them and provide tips to maintain this.";
-            }
-
             
-            // Call GPT 
-            try {
-                console.log(OPENAI_API_KEY);
-                const gptResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
-                    model: "gpt-3.5-turbo",  // Switch to a supported model
-                    messages: [
-                        { role: "system", content: "You are a helpful assistant." },
-                        { role: "user", content: prompt }
-                    ],
-                    max_tokens: 150,
-                    temperature: 0.7
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${NEXT_PUBLIC_OPENAI_API_KEY}`
-                    }
-                });
-            
-            const botMessage = gptResponse.data.choices[0].message.content.trim();
-            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botMessage}</div>`;
+            // Display the result directly in the chatbot
+            const botResponse = `Based on your answers, you would use up Earth's resources by day ${overuseDay} of the month.`;
+            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
             chatbox.scrollTop = chatbox.scrollHeight;
-            
-            } catch (error) {
-            console.error('GPT API call failed:', error.response?.data || error.message);
-            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Oops! Something went wrong. Please try again later.</div>`;
-            }
-         });
-    
-    </script> 
+        });
+    </script>
 </body>
 </html>
