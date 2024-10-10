@@ -438,6 +438,7 @@
             
             // Call GPT
             try {
+                console.log(OPENAI_API_KEY);
                 const gptResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
                     model: "gpt-3.5-turbo",  // Switch to a supported model
                     messages: [
