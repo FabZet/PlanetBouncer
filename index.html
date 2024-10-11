@@ -185,6 +185,21 @@
         .input-area button:hover {
             background-color: #758694;
         }
+
+        .footer-container {
+            width: 75%;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;  /* Optional: Adds a thin border above the footer */
+        }
+    
+        .footer-text {
+            font-size: 10px;
+            color: #aaa;  /* Light grey color */
+            line-height: 1.5;
+        }
+        
     </style>
 </head>
 <body>
@@ -360,6 +375,16 @@
             </div>
         </div>
 
+        
+    <!-- Footer Section -->
+        <div class="footer-container">
+            <p class="footer-text">
+                Privacy Policy: Your privacy is important to us. We do not collect any personal information that can identify you directly. Any data collected through the questionnaire is anonymous and used solely for improving the quality of the Planet Bouncer app. We do not share, sell, or distribute any user data to third parties. By using this site, you agree to our data usage policy to help promote a more sustainable future.
+            </p>
+        </div>
+
+
+        
         <script>
         // Event listener for Send button
         document.getElementById('sendBtn').addEventListener('click', function() {
