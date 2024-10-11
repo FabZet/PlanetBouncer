@@ -60,12 +60,11 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 35%;  /* Fixed width for the chatbot */
-            max-height: 100%;  /* Ensures the height doesn’t exceed the container */
+            width: 35%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-width: 300px;  /* Ensures the chatbot section has a minimum width */
+            overflow: hidden;  /* Prevents scrolling in the wrong direction */
         }
 
         /* Chatbox scroll */
@@ -162,6 +161,8 @@
         df-messenger {
             width: 100%;  /* Make the Dialogflow Messenger fit the container width */
             height: 100%;  /* Adjust height to fit the chatbox */
+            border: none;  /* Removes any border */
+            display: block;  /* Forces it to behave like a block element */
         }
 
         .message {
