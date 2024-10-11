@@ -166,13 +166,6 @@
         .submit-section button:hover {
             background-color: #758694;
         }
-    
-        df-messenger {
-            width: 100%;
-            height: 100%; /* Ensures the chatbot takes the full height of its container */
-            border: none;
-            display: block;
-        }
 
         .message {
             margin: 10px 0;
@@ -391,15 +384,6 @@
         <div class="chatbot-section">
             <h2>Chat with Planet Bouncer</h2>
             <div class="chatbox" id="chatbox">
-                <!-- Embed the Dialogflow Messenger here -->
-                <df-messenger
-                    oauth-client-id="407013884998-6pnh8funuhv76h7mvlqhss2446l33g3f.apps.googleusercontent.com"
-                    project-id="planet-bouncer"
-                    agent-id="8b116796-016d-4505-86e4-fda364f9fcd0"
-                    language-code="en"
-                    max-query-length="-1">
-                    <df-messenger-chat chat-title="Planet Bouncer"></df-messenger-chat>
-                </df-messenger>
             </div>
         </div>
 
