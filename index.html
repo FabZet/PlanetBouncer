@@ -39,8 +39,24 @@
             display: flex;
             justify-content: space-between;
             width: 100%;  /* Take full width */
-            flex-grow: 1; /* Allow this to grow to take available vertical space */
-            margin-bottom: 10px; /* Adds space between the wrapper and footer */
+            min-width: 600px;  /* Ensures that the content wrapper doesn't collapse */
+            height: 80vh;  /* Set a maximum height for both sections */
+            flex-wrap: nowrap;
+            gap: 20px;  /* Adds space between sections */
+        }
+        
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;  /* Stack sections vertically on small screens */
+                align-items: center;
+            }
+        
+            .question-section,
+            .chatbot-section {
+                width: 100%;  /* Full width for both sections on small screens */
+                max-width: 100%;
+            }
         }
         
         /* Question Section */
@@ -50,9 +66,10 @@
             padding: 20px;
             margin-right: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1;  /* Takes the majority of space */
+            flex: 1;
             max-width: 60%;
-            overflow-y: auto;
+            overflow-y: auto;  /* Restores the scroll functionality */
+            max-height: 80vh;   /* Prevents it from taking too much vertical space */
         }
         
         /* Chatbot Section */
@@ -61,10 +78,11 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 0 1 35%;  /* Takes a smaller portion */
+            width: 35%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: hidden;
         }
 
         /* Chatbox scroll */
