@@ -227,22 +227,22 @@
                 <h3>Housing</h3>
 
                 <div class="question">
-                    <label for="homeType">What type of home do you live in?</label>
+                    <label class="question-text" for="homeType">What type of home do you live in?</label>
                     <div>
                         <input type="radio" id="apartment" name="homeType" value="Apartment">
-                        <label for="apartment">Apartment</label>
+                        <label class="option-label" for="apartment">Apartment</label>
                     </div>
                     <div>
                         <input type="radio" id="house" name="homeType" value="House">
-                        <label for="house">House</label>
+                        <label class="option-label" for="house">House</label>
                     </div>
                     <div>
                         <input type="radio" id="condo" name="homeType" value="Condo">
-                        <label for="condo">Condo</label>
+                        <label class="option-label" for="condo">Condo</label>
                     </div>
                     <div>
                         <input type="radio" id="townhouse" name="homeType" value="Townhouse">
-                        <label for="townhouse">Townhouse</label>
+                        <label class="option-label" for="townhouse">Townhouse</label>
                     </div>
                 </div>
 
@@ -263,23 +263,33 @@
                 </div>
 
                 <div class="question">
-                    <label>Is your home well-insulated?</label>
-                    <div class="toggle">
+                    <label class="question-text">Is your home well-insulated?</label>
+                    <div>
                         <input type="radio" id="insulationTrue" name="insulation" value="True">
-                        <label for="insulationTrue">Yes</label>
+                        <label class="option-label" for="insulationTrue">Yes</label>
+                    </div>
+                    <div>
                         <input type="radio" id="insulationFalse" name="insulation" value="False">
-                        <label for="insulationFalse">No</label>
+                        <label class="option-label" for="insulationFalse">No</label>
                     </div>
                 </div>
 
                 <div class="question">
-                    <label for="energySaving">Do you use energy-saving appliances?</label>
-                    <select id="energySaving" class="dropdown">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                        <option value="Some">Some</option>
-                    </select>
+                    <label class="question-text" for="energySaving">Do you use energy-saving appliances?</label>
+                    <div>
+                        <input type="radio" id="energySavingYes" name="energySaving" value="Yes">
+                        <label class="option-label" for="energySavingYes">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="energySavingNo" name="energySaving" value="No">
+                        <label class="option-label" for="energySavingNo">No</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="energySavingSome" name="energySaving" value="Some">
+                        <label class="option-label" for="energySavingSome">Some</label>
+                    </div>
                 </div>
+                
             </div>
 
             <!-- Energy Section -->
