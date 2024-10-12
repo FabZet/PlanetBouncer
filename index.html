@@ -213,26 +213,37 @@
             <div class="question-section">
                 <h2>Planet Bouncer Questionnaire</h2>
 
+            
             <!-- Housing Section -->
             <div class="housing-section">
                 <h3>Housing</h3>
 
                 <div class="question">
                     <label for="homeType">What type of home do you live in?</label>
-                    <select id="homeType" class="dropdown">
-                        <option value="Apartment">Apartment</option>
-                        <option value="House">House</option>
-                        <option value="Condo">Condo</option>
-                        <option value="Townhouse">Townhouse</option>
-                    </select>
+                    <div>
+                        <input type="radio" id="apartment" name="homeType" value="Apartment">
+                        <label for="apartment">Apartment</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="house" name="homeType" value="House">
+                        <label for="house">House</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="condo" name="homeType" value="Condo">
+                        <label for="condo">Condo</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="townhouse" name="homeType" value="Townhouse">
+                        <label for="townhouse">Townhouse</label>
+                    </div>
                 </div>
 
                 <div class="question">
                     <label for="homeSize">What is the size of your home?</label>
                     <select id="homeSize" class="dropdown">
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
+                        <option value="Small">Less than 60m2</option>
+                        <option value="Medium">Between 60m2 and 120m2</option>
+                        <option value="Large">More than 120m2</option>
                     </select>
                 </div>
 
@@ -247,13 +258,12 @@
                 </div>
 
                 <div class="question">
-                    <label>Do you use energy-saving appliances?</label>
-                    <div class="toggle">
-                        <input type="radio" id="appliancesTrue" name="energySavingAppliances" value="True">
-                        <label for="appliancesTrue">Yes</label>
-                        <input type="radio" id="appliancesFalse" name="energySavingAppliances" value="False">
-                        <label for="appliancesFalse">No</label>
-                    </div>
+                    <label for="energySaving">Do you use energy-saving appliances?</label>
+                    <select id="energySaving" class="dropdown">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Some">Some</option>
+                    </select>
                 </div>
             </div>
 
