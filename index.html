@@ -136,6 +136,11 @@
             margin-right: 8px;
         }
 
+        input[type="range"] {
+            width: 100%;  /* Make the slider take the full width of the container */
+            margin: 10px 0;
+        }
+
         .submit-section {
             text-align: center;
             margin-top: 20px;
@@ -289,6 +294,26 @@
                         <label class="option-label" for="energySavingSome">Some</label>
                     </div>
                 </div>
+
+                <div class="question">
+                    <label class="question-text" for="energySavingFrequency">How often did you use energy-saving appliances over the past 30 days?</label>
+                    <div>
+                        <input type="radio" id="allTime" name="energySavingFrequency" value="All the time">
+                        <label class="option-label" for="allTime">All the time</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mostTime" name="energySavingFrequency" value="Most of the time">
+                        <label class="option-label" for="mostTime">Most of the time</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="rarely" name="energySavingFrequency" value="Rarely">
+                        <label class="option-label" for="rarely">Rarely</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="never" name="energySavingFrequency" value="Never">
+                        <label class="option-label" for="never">Never</label>
+                    </div>
+                </div>
                 
             </div>
 
@@ -297,12 +322,9 @@
                 <h3>Energy Use</h3>
 
                 <div class="question">
-                    <label for="energyUsage">How much electricity do you use per month?</label>
-                    <select id="energyUsage" class="dropdown">
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                    </select>
+                    <label class="question-text" for="energyUsage">How much electricity do you use per month?</label>
+                    <input type="range" id="energyUsage" name="energyUsage" min="0" max="100" value="50" oninput="updateSliderValue(this.value)">
+                    <p>Usage level: <span id="sliderValue">Medium</span></p>
                 </div>
 
                 <div class="question">
@@ -423,7 +445,20 @@
         </div>
     </div>
 
-        
+
+        <script>
+            function updateSliderValue(value) {
+                const sliderText = document.getElementById('sliderValue');
+                if (value < 34) {
+                    sliderText.innerHTML = 'Low';
+                } else if (value >= 34 && value <= 66) {
+                    sliderText.innerHTML = 'Medium';
+                } else {
+                    sliderText.innerHTML = 'High';
+                }
+            }
+        </script>
+    
         <script>
         // Event listener for Send button
         document.getElementById('sendBtn').addEventListener('click', function() {
