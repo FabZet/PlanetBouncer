@@ -377,8 +377,9 @@
                 </div>
 
                 <div class="question">
-                    <label for="kilometersDriven">How many kilometers do you drive annually?</label>
-                    <input type="number" id="kilometersDriven" placeholder="e.g. 12000" class="dropdown">
+                    <label class="question-text" for="kilometersDriven">How many kilometers did you drive during the past month?</label>
+                    <input type="range" id="kilometersDriven" name="kilometersDriven" min="0" max="1000" step="250" value="0" oninput="updateKilometersValue(this.value)">
+                    <p>Kilometers driven: <span id="kilometersValue">0-100 km</span></p>
                 </div>
 
                 <div class="question">
@@ -472,6 +473,21 @@
         <script>
             function updateSliderValue(value) {
                 document.getElementById('sliderValue').innerHTML = value + ' kWh';
+            }
+        </script>
+
+        <script>
+            function updateKilometersValue(value) {
+                const kilometersText = document.getElementById('kilometersValue');
+                if (value == 0) {
+                    kilometersText.innerHTML = '0-100 km';
+                } else if (value == 250) {
+                    kilometersText.innerHTML = '101-500 km';
+                } else if (value == 500) {
+                    kilometersText.innerHTML = '501-1000 km';
+                } else {
+                    kilometersText.innerHTML = '1000+ km';
+                }
             }
         </script>
     
