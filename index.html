@@ -328,16 +328,39 @@
                 </div>
 
                 <div class="question">
-                    <label for="renewableEnergy">Do you use renewable energy?</label>
-                    <div class="toggle">
-                        <input type="radio" id="renewableYes" name="renewableEnergy" value="True">
-                        <label for="renewableYes">Yes</label>
-                        <input type="radio" id="renewableNo" name="renewableEnergy" value="False">
-                        <label for="renewableNo">No</label>
+                    <label class="question-text" for="renewableEnergy">Do you use renewable energy?</label>
+                    <div>
+                        <input type="radio" id="renewableYes" name="renewableEnergy" value="100% renewable">
+                        <label class="option-label" for="renewableYes">Yes, 100% renewable</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="partiallyRenewable" name="renewableEnergy" value="Partially renewable">
+                        <label class="option-label" for="partiallyRenewable">Partially renewable</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="noRenewable" name="renewableEnergy" value="No">
+                        <label class="option-label" for="noRenewable">No</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="unknownRenewable" name="renewableEnergy" value="I don’t know">
+                        <label class="option-label" for="unknownRenewable">I don’t know</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-text" for="reduceElectricity">Did you make any efforts to reduce electricity usage during the past 30 days?</label>
+                    <div>
+                        <input type="radio" id="reduceYes" name="reduceElectricity" value="Yes">
+                        <label class="option-label" for="reduceYes">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="reduceNo" name="reduceElectricity" value="No">
+                        <label class="option-label" for="reduceNo">No</label>
                     </div>
                 </div>
             </div>
 
+                
             <!-- Transportation Section -->
             <div class="transportation-section">
                 <h3>Transportation</h3>
