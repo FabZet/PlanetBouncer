@@ -104,13 +104,17 @@
             margin-bottom: 20px;  /* Space between options */
         }
 
-        label {
-            font-size: 14px;
-            font-weight: bold;
-            color: #555;
-            display: block;
-            margin-bottom: 8px;
-            margin-left: 8px;  /* Space between radio button and label */
+        /* Style for the question text only */
+        .question label.question-text {
+            font-weight: bold;  /* Makes the question text bold */
+            display: block;  /* Ensure the label behaves like a block element */
+            margin-bottom: 10px;  /* Adds space between the question and the options */
+        }
+        
+        /* Style for the radio button options */
+        .question label.option-label {
+            font-weight: normal;  /* Ensures the radio button labels are not bold */
+            margin-left: 8px;  /* Adds some space between the radio button and the label */
         }
 
         .dropdown {
@@ -243,18 +247,18 @@
                 </div>
 
                 <div class="question">
-                    <label for="homeSize">What is the size of your home?</label>
+                    <label class="question-text" for="homeSize">What is the size of your home?</label>
                     <div>
                         <input type="radio" id="small" name="homeSize" value="Small">
-                        <label for="small">Less than 60m²</label>
+                        <label class="option-label" for="small">Less than 60m²</label>
                     </div>
                     <div>
                         <input type="radio" id="medium" name="homeSize" value="Medium">
-                        <label for="medium">Between 60m² and 120m²</label>
+                        <label class="option-label" for="medium">Between 60m² and 120m²</label>
                     </div>
                     <div>
                         <input type="radio" id="large" name="homeSize" value="Large">
-                        <label for="large">More than 120m²</label>
+                        <label class="option-label" for="large">More than 120m²</label>
                     </div>
                 </div>
 
