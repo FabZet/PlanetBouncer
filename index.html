@@ -322,9 +322,9 @@
                 <h3>Energy Use</h3>
 
                 <div class="question">
-                    <label class="question-text" for="energyUsage">How much electricity do you use per month?</label>
-                    <input type="range" id="energyUsage" name="energyUsage" min="0" max="100" value="50" oninput="updateSliderValue(this.value)">
-                    <p>Usage level: <span id="sliderValue">Medium</span></p>
+                    <label class="question-text" for="energyUsage">How much electricity do you use per month (in kWh)?</label>
+                    <input type="range" id="energyUsage" name="energyUsage" min="500" max="1500" step="250" value="1000" oninput="updateSliderValue(this.value)">
+                    <p>Electricity usage: <span id="sliderValue">1,000 kWh</span></p>
                 </div>
 
                 <div class="question">
@@ -448,14 +448,7 @@
 
         <script>
             function updateSliderValue(value) {
-                const sliderText = document.getElementById('sliderValue');
-                if (value < 34) {
-                    sliderText.innerHTML = 'Low';
-                } else if (value >= 34 && value <= 66) {
-                    sliderText.innerHTML = 'Medium';
-                } else {
-                    sliderText.innerHTML = 'High';
-                }
+                document.getElementById('sliderValue').innerHTML = value + ' kWh';
             }
         </script>
     
