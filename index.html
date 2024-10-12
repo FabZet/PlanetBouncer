@@ -101,7 +101,7 @@
         .question div {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;  /* Space between options */
+            margin-bottom: 8px;  /* Space between options */
         }
 
         label {
@@ -243,11 +243,18 @@
 
                 <div class="question">
                     <label for="homeSize">What is the size of your home?</label>
-                    <select id="homeSize" class="dropdown">
-                        <option value="Small">Less than 60m2</option>
-                        <option value="Medium">Between 60m2 and 120m2</option>
-                        <option value="Large">More than 120m2</option>
-                    </select>
+                    <div>
+                        <input type="radio" id="small" name="homeSize" value="Small">
+                        <label for="small">Less than 60m²</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="medium" name="homeSize" value="Medium">
+                        <label for="medium">Between 60m² and 120m²</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="large" name="homeSize" value="Large">
+                        <label for="large">More than 120m²</label>
+                    </div>
                 </div>
 
                 <div class="question">
