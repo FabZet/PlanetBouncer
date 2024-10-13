@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet Bouncer - Questionnaire</title>
+    
+    <!-- Stylesheet -->
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0B192C;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Main container */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        /* Content wrapper to place sections side by side */
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+            width: 100%;
+            gap: 20px;
+            min-height: 80vh;  /* Occupy at least 80% of the viewport height */
+        }
+
+        /* Question section */
+        .question-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* Chatbot section */
+        .chatbot-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        /* Footer */
+        .footer-container {
+            text-align: center;
+            padding: 10px;
+            background-color: #0B192C;
+            color: #aaa;
+            margin-top: auto;
+        }
+
+        /* Responsive styles for small screens */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="main-container">
+        <!-- Content Wrapper: Two sections side by side -->
+        <div class="content-wrapper">
+            <!-- Question Section -->
+            <div class="question-section">
+                <h2>Planet Bouncer Questionnaire</h2>
+                <p>Placeholder for questions...</p>
+            </div>
+
+            <!-- Chatbot Section -->
+            <div class="chatbot-section">
+                <h2>Chat with Planet Bouncer</h2>
+                <p>This is where the chatbot will be rendered.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-container">
+            <p>Privacy Policy: Your privacy is important to us. We do not collect any personal information...</p>
+        </div>
+    </div>
+</body>
+</html>
