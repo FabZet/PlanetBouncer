@@ -366,14 +366,27 @@
                 <h3>Transportation</h3>
 
                 <div class="question">
-                    <label for="vehicleType">Do you own a vehicle? If so, what type?</label>
-                    <select id="vehicleType" class="dropdown">
-                        <option value="None">None</option>
-                        <option value="Gasoline">Gasoline</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Electric">Electric</option>
-                        <option value="Hybrid">Hybrid</option>
-                    </select>
+                    <label class="question-text" for="vehicleType">Do you own a vehicle? If so, what type?</label>
+                    <div>
+                        <input type="radio" id="vehicleNone" name="vehicleType" value="None">
+                        <label class="option-label" for="vehicleNone">None</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="vehicleGasoline" name="vehicleType" value="Gasoline">
+                        <label class="option-label" for="vehicleGasoline">Gasoline</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="vehicleDiesel" name="vehicleType" value="Diesel">
+                        <label class="option-label" for="vehicleDiesel">Diesel</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="vehicleElectric" name="vehicleType" value="Electric">
+                        <label class="option-label" for="vehicleElectric">Electric</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="vehicleHybrid" name="vehicleType" value="Hybrid">
+                        <label class="option-label" for="vehicleHybrid">Hybrid</label>
+                    </div>
                 </div>
 
                 <div class="question">
@@ -383,22 +396,47 @@
                 </div>
 
                 <div class="question">
-                    <label>Do you regularly use public transportation?</label>
-                    <div class="toggle">
-                        <input type="radio" id="publicTransportYes" name="publicTransport" value="True">
-                        <label for="publicTransportYes">Yes</label>
-                        <input type="radio" id="publicTransportNo" name="publicTransport" value="False">
-                        <label for="publicTransportNo">No</label>
+                    <label class="question-text" for="publicTransport">How often did you use public transportation over the past 30 days?</label>
+                    <div>
+                        <input type="radio" id="transportDaily" name="publicTransport" value="Daily">
+                        <label class="option-label" for="transportDaily">Daily</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="transportSeveral" name="publicTransport" value="Several times a week">
+                        <label class="option-label" for="transportSeveral">Several times a week</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="transportWeekly" name="publicTransport" value="Once a week">
+                        <label class="option-label" for="transportWeekly">Once a week</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="transportRarely" name="publicTransport" value="Rarely">
+                        <label class="option-label" for="transportRarely">Rarely</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="transportNever" name="publicTransport" value="Never">
+                        <label class="option-label" for="transportNever">Never</label>
                     </div>
                 </div>
 
                 <div class="question">
-                    <label for="airTravel">How many flights do you take annually?</label>
-                    <select id="airTravel" class="dropdown">
-                        <option value="None">None</option>
-                        <option value="1-3">1-3</option>
-                        <option value="4+">4+</option>
-                    </select>
+                    <label class="question-text" for="flightsTaken">How many flights did you take during the past month?</label>
+                    <div>
+                        <input type="radio" id="flights0" name="flightsTaken" value="0 flights">
+                        <label class="option-label" for="flights0">0 flights</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="flights1" name="flightsTaken" value="1 flight">
+                        <label class="option-label" for="flights1">1 flight</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="flights2" name="flightsTaken" value="2 flights">
+                        <label class="option-label" for="flights2">2 flights</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="flights3Plus" name="flightsTaken" value="3+ flights">
+                        <label class="option-label" for="flights3Plus">3+ flights</label>
+                    </div>
                 </div>
             </div>
 
@@ -407,41 +445,112 @@
                 <h3>Diet</h3>
 
                 <div class="question">
-                    <label for="dietType">What type of diet do you follow?</label>
-                    <select id="dietType" class="dropdown">
-                        <option value="Meat-based">Meat-based</option>
-                        <option value="Vegetarian">Vegetarian</option>
-                        <option value="Vegan">Vegan</option>
-                    </select>
-                </div>
-
-                <div class="question">
-                    <label for="meatFrequency">How often do you consume meat or dairy?</label>
-                    <select id="meatFrequency" class="dropdown">
-                        <option value="Daily">Daily</option>
-                        <option value="Weekly">Weekly</option>
-                        <option value="Rarely">Rarely</option>
-                    </select>
-                </div>
-
-                <div class="question">
-                    <label>Do you try to buy locally sourced food?</label>
-                    <div class="toggle">
-                        <input type="radio" id="localYes" name="locallySourcedFood" value="True">
-                        <label for="localYes">Yes</label>
-                        <input type="radio" id="localNo" name="locallySourcedFood" value="False">
-                        <label for="localNo">No</label>
+                    <label class="question-text" for="meatDairyConsumption">How often did you consume meat or dairy over the past month?</label>
+                    <div>
+                        <input type="radio" id="meatDaily" name="meatDairyConsumption" value="Daily">
+                        <label class="option-label" for="meatDaily">Daily</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="meatFewTimes" name="meatDairyConsumption" value="A few times a week">
+                        <label class="option-label" for="meatFewTimes">A few times a week</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="meatOnceWeek" name="meatDairyConsumption" value="Once a week">
+                        <label class="option-label" for="meatOnceWeek">Once a week</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="meatRarely" name="meatDairyConsumption" value="Rarely">
+                        <label class="option-label" for="meatRarely">Rarely</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="meatNever" name="meatDairyConsumption" value="Never">
+                        <label class="option-label" for="meatNever">Never</label>
                     </div>
                 </div>
 
                 <div class="question">
-                    <label for="foodWaste">How much food do you waste?</label>
-                    <select id="foodWaste" class="dropdown">
-                        <option value="None">None</option>
-                        <option value="Some">Some</option>
-                        <option value="A lot">A lot</option>
-                    </select>
+                    <label class="question-text" for="locallySourcedFood">Did you purchase locally sourced food during the past month?</label>
+                    <div>
+                        <input type="radio" id="localOften" name="locallySourcedFood" value="Yes, often">
+                        <label class="option-label" for="localOften">Yes, often</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="localOccasionally" name="locallySourcedFood" value="Yes, occasionally">
+                        <label class="option-label" for="localOccasionally">Yes, occasionally</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="localNo" name="locallySourcedFood" value="No">
+                        <label class="option-label" for="localNo">No</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="localUnknown" name="locallySourcedFood" value="I don’t know">
+                        <label class="option-label" for="localUnknown">I don’t know</label>
+                    </div>
                 </div>
+
+                <div class="question">
+                    <label class="question-text" for="recycling">How much waste did you recycle during the past 30 days?</label>
+                    <div>
+                        <input type="radio" id="recycle100" name="recycling" value="100%">
+                        <label class="option-label" for="recycle100">100%</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="recycleMost" name="recycling" value="Most of it">
+                        <label class="option-label" for="recycleMost">Most of it</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="recycleSome" name="recycling" value="Some of it">
+                        <label class="option-label" for="recycleSome">Some of it</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="recycleNone" name="recycling" value="None">
+                        <label class="option-label" for="recycleNone">None</label>
+                    </div>
+                </div>
+            
+                <!-- Shopping -->
+                <div class="shopping">
+                    <h3>Shopping</h3>
+
+                    <div class="question">
+                        <label class="question-text" for="consumerGoods">How many new consumer goods (clothing, electronics, furniture, etc.) did you purchase in the past month?</label>
+                        <div>
+                            <input type="radio" id="goodsNone" name="consumerGoods" value="None">
+                            <label class="option-label" for="goodsNone">None</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="goods1to2" name="consumerGoods" value="1-2 items">
+                            <label class="option-label" for="goods1to2">1-2 items</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="goods3to5" name="consumerGoods" value="3-5 items">
+                            <label class="option-label" for="goods3to5">3-5 items</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="goodsMore5" name="consumerGoods" value="More than 5 items">
+                            <label class="option-label" for="goodsMore5">More than 5 items</label>
+                        </div>
+                    </div>   
+
+                    <div class="question">
+                        <label class="question-text" for="environmentalImpact">Did you make any efforts to reduce your environmental impact when purchasing consumer goods (e.g., buying second-hand, sustainable brands) in the past month?</label>
+                        <div>
+                            <input type="radio" id="impactYes" name="environmentalImpact" value="Yes, I prioritized second-hand or sustainable brands">
+                            <label class="option-label" for="impactYes">Yes, I prioritized second-hand or sustainable brands</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="impactOccasionally" name="environmentalImpact" value="Occasionally, but not always">
+                            <label class="option-label" for="impactOccasionally">Occasionally, but not always</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="impactNo" name="environmentalImpact" value="No, I didn’t consider it">
+                            <label class="option-label" for="impactNo">No, I didn’t consider it</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="impactNone" name="environmentalImpact" value="I didn’t purchase any consumer goods">
+                            <label class="option-label" for="impactNone">I didn’t purchase any consumer goods</label>
+                        </div>
+                    </div>              
             </div>
 
             <!-- Submit Button -->
