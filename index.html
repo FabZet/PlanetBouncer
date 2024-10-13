@@ -18,13 +18,13 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Full screen height */
+            min-height: 100vh; /* Ensure the body takes full screen height */
         }
         
         /* Main container for centering content */
         .main-container {
-            width: 90%; /* Use more screen width */
-            max-width: 1200px;
+            width: 100%; /* Make the container use full width */
+            max-width: 1200px; /* Maximum width cap */
             margin: 20px auto;
             display: flex;
             flex-direction: column;
@@ -34,12 +34,12 @@
         /* Content wrapper for horizontal layout */
         .content-wrapper {
             display: flex;
-            justify-content: space-between; /* Ensures both sections stay side by side */
-            width: 100%;
-            flex-grow: 1; /* Expands to take available vertical space */
-            gap: 20px; /* Add space between sections */
-            min-height: 85vh; /* Keep consistent height */
-            flex-wrap: nowrap; /* Prevent wrapping */
+            justify-content: space-between; /* Ensure sections are spaced out */
+            width: 100%; /* Take up full width of the container */
+            flex-grow: 1;
+            gap: 20px; /* Adds space between question and chatbot sections */
+            min-height: 85vh; /* Set a consistent height */
+            flex-wrap: nowrap; /* Prevents wrapping */
         }
         
         /* Question Section */
@@ -48,9 +48,9 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 60%; /* Takes 60% of the available space */
-            overflow-y: auto; /* Scroll content */
-            max-height: 85vh; /* Prevent overflow */
+            flex: 1; /* Allow this section to grow */
+            max-height: 85vh; /* Limit height to prevent overflow */
+            overflow-y: auto; /* Enable scrolling if content exceeds height */
         }
         
         /* Chatbot Section */
@@ -59,8 +59,8 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 35%; /* Fixed width */
-            max-height: 85vh; /* Prevent it from being too tall */
+            flex: 1; /* Allow this section to grow */
+            max-height: 85vh; /* Limit height */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -68,22 +68,22 @@
         
         /* Chatbox */
         .chatbox {
-            height: 100%; /* Ensure chatbox takes the full available height */
+            height: 100%; /* Make sure the chatbox takes full height */
             overflow-y: auto;
         }
         
-        /* Footer */
+        /* Footer Section */
         .footer-container {
             width: 100%;
             text-align: center;
             padding: 10px 0;
-            margin-top: auto; /* Keeps footer at the bottom */
+            margin-top: auto; /* Keeps the footer at the bottom */
         }
         
-        /* Responsive design */
+        /* Responsive adjustments for smaller screens */
         @media (max-width: 768px) {
             .content-wrapper {
-                flex-direction: column; /* Stack sections vertically on small screens */
+                flex-direction: column; /* Stack sections vertically */
             }
         
             .question-section,
