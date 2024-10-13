@@ -23,11 +23,12 @@
         }
         
         .main-container {
-            width: 75%;
-            margin: 0 auto;
+            width: 80%; /* Adjusted to a reasonable width */
+            max-width: 1200px;
+            margin: 20px auto; /* Auto margins to center the container */
             display: flex;
-            flex-direction: column;  /* Ensure the footer is placed below */
-            align-items: center;  /* Centers the main container */
+            flex-direction: column; /* Stack content vertically */
+            align-items: center;
         }
         
         /* This wrapper will make the question and chatbot sections align horizontally */
@@ -81,6 +82,7 @@
             text-align: center;
             padding: 10px 0;
             margin-top: 10px;
+            clear: both;
             /* Optional: Uncomment this if you want a border at the top */
             /* border-top: 1px solid #ddd; */
         }
