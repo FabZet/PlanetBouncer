@@ -18,7 +18,7 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure full screen height */
+            min-height: 100vh; /* Full screen height */
         }
         
         /* Main container for centering content */
@@ -28,18 +28,18 @@
             margin: 20px auto;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /* Allow main content to grow */
+            flex-grow: 1;
         }
         
         /* Content wrapper for horizontal layout */
         .content-wrapper {
             display: flex;
-            justify-content: space-between;
-            width: 100%; 
-            flex-grow: 1; /* Allow it to take up vertical space */
-            gap: 20px; /* Adds space between question and chatbot */
-            flex-wrap: nowrap; /* Prevents wrapping */
-            min-height: 85vh; /* Keeps the height consistent */
+            justify-content: space-between; /* Ensures both sections stay side by side */
+            width: 100%;
+            flex-grow: 1; /* Expands to take available vertical space */
+            gap: 20px; /* Add space between sections */
+            min-height: 85vh; /* Keep consistent height */
+            flex-wrap: nowrap; /* Prevent wrapping */
         }
         
         /* Question Section */
@@ -48,9 +48,9 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 60%; /* Take 60% of the available space */
-            max-height: 85vh; /* Ensure it doesn’t overflow the viewport */
-            overflow-y: auto; /* Enable scrolling for content */
+            width: 60%; /* Takes 60% of the available space */
+            overflow-y: auto; /* Scroll content */
+            max-height: 85vh; /* Prevent overflow */
         }
         
         /* Chatbot Section */
@@ -59,19 +59,37 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 35%; /* Fixed width for chatbot section */
-            max-height: 85vh;
+            width: 35%; /* Fixed width */
+            max-height: 85vh; /* Prevent it from being too tall */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
         
-        /* Footer styling */
+        /* Chatbox */
+        .chatbox {
+            height: 100%; /* Ensure chatbox takes the full available height */
+            overflow-y: auto;
+        }
+        
+        /* Footer */
         .footer-container {
             width: 100%;
             text-align: center;
             padding: 10px 0;
-            margin-top: auto; /* Ensure it stays at the bottom */
+            margin-top: auto; /* Keeps footer at the bottom */
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column; /* Stack sections vertically on small screens */
+            }
+        
+            .question-section,
+            .chatbot-section {
+                width: 100%; /* Full width for both sections */
+            }
         }
         
         .footer-text {
@@ -574,10 +592,9 @@
         <!-- Chatbot Section -->
         <div class="chatbot-section">
             <h2>Chat with Planet Bouncer</h2>
-            <div class="chatbox" id="chatbox"></div>
-            <div class="input-area">
-                <input type="text" id="userInput" placeholder="Type your message...">
-                <button id="sendBtn">Send</button>
+            <div class="chatbox" id="chatbox">
+                <!-- Temporary message -->
+                <p>This is where the chatbot will be rendered.</p>
             </div>
         </div>
     </div>
