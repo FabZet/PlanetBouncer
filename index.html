@@ -23,20 +23,19 @@
         }
         
         .main-container {
-            width: 80%; /* Adjusted to a reasonable width */
-            max-width: 1200px;
-            margin: 20px auto; /* Auto margins to center the container */
+            width: 100%;  /* Set to 100% to utilize full page width */
+            max-width: 1200px; /* Set max-width for large screens */
+            margin: 20px auto;
             display: flex;
-            flex-direction: column; /* Stack content vertically */
-            align-items: center;
+            flex-direction: column;
         }
         
         /* Content wrapper */
         .content-wrapper {
             display: flex;
             justify-content: space-between;
-            width: 100%;  /* Ensure it uses the full width of the main container */
-            height: 85vh;  /* Set a maximum height for both sections */
+            width: 100%;  /* Ensure full width usage */
+            height: 85vh;  /* Set a maximum height */
         }
         
         /* Question Section */
@@ -46,10 +45,10 @@
             padding: 20px;
             margin-right: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1;  /* Ensures the question section takes up available space */
-            width: 60%; /* Ensures a good width for questions */
-            max-height: 85vh;  /* Ensures the height doesn’t exceed the container */
-            overflow-y: auto;  /* Allows scrolling if content overflows */
+            flex-grow: 1;  /* Flex grow to ensure it takes available space */
+            min-width: 60%; /* Minimum width to prevent it from getting too narrow */
+            max-height: 85vh;  /* Height limit */
+            overflow-y: auto;  /* Scrollable content */
         }
         
         /* Chatbot Section */
@@ -58,20 +57,17 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 35%; /* Adjusted width */
-            max-height: 85vh;  /* Set a limit */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            width: 35%; /* Fixed width for chatbot */
+            max-height: 85vh; /* Height limit */
         }
         
         /* Footer styling */
         .footer-container {
-            width: 100%;
+            width: 100%;  /* Full width */
             text-align: center;
             padding: 10px 0;
             margin-top: 20px;
-            clear: both; /* Ensures footer stays below the content */
+            clear: both;
         }
         
         .footer-text {
