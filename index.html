@@ -18,28 +18,27 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes full screen height */
+            min-height: 100vh; /* Full height */
         }
         
-        /* Main container for centering content */
+        /* Main container */
         .main-container {
-            width: 100%; /* Make the container use full width */
-            max-width: 1200px; /* Maximum width cap */
+            width: 100%; /* Use full width */
+            max-width: 1200px; /* Cap at 1200px */
             margin: 20px auto;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            flex-grow: 1; /* Allow growth */
         }
         
         /* Content wrapper for horizontal layout */
         .content-wrapper {
             display: flex;
-            justify-content: space-between; /* Ensure sections are spaced out */
-            width: 100%; /* Take up full width of the container */
+            justify-content: space-between; /* Space between sections */
+            width: 100%; /* Full width */
             flex-grow: 1;
-            gap: 20px; /* Adds space between question and chatbot sections */
-            min-height: 85vh; /* Set a consistent height */
-            flex-wrap: nowrap; /* Prevents wrapping */
+            gap: 20px; /* Space between sections */
+            min-height: 85vh; /* Full content height */
         }
         
         /* Question Section */
@@ -48,9 +47,9 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow this section to grow */
-            max-height: 85vh; /* Limit height to prevent overflow */
-            overflow-y: auto; /* Enable scrolling if content exceeds height */
+            flex: 1; /* Allow it to grow */
+            overflow-y: auto; /* Scroll content */
+            max-height: 85vh; /* Height cap */
         }
         
         /* Chatbot Section */
@@ -59,36 +58,35 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow this section to grow */
-            max-height: 85vh; /* Limit height */
+            flex: 1; /* Equal growth with the question section */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            max-height: 85vh; /* Height limit */
         }
         
-        /* Chatbox */
+        /* Chatbox inside chatbot section */
         .chatbox {
-            height: 100%; /* Make sure the chatbox takes full height */
-            overflow-y: auto;
+            height: 100%; /* Take full height */
+            overflow-y: auto; /* Allow scroll */
         }
         
-        /* Footer Section */
+        /* Footer */
         .footer-container {
             width: 100%;
             text-align: center;
             padding: 10px 0;
-            margin-top: auto; /* Keeps the footer at the bottom */
+            margin-top: auto;
         }
         
-        /* Responsive adjustments for smaller screens */
+        /* Responsive settings */
         @media (max-width: 768px) {
             .content-wrapper {
                 flex-direction: column; /* Stack sections vertically */
             }
-        
             .question-section,
             .chatbot-section {
-                width: 100%; /* Full width for both sections */
+                width: 100%; /* Full width */
             }
         }
         
