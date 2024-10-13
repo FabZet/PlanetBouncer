@@ -17,25 +17,26 @@
             background-color: #0B192C;
             margin: 0;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
             min-height: 100vh;
         }
         
+        /* Main container for centering content */
         .main-container {
-            width: 100%;  /* Set to 100% to utilize full page width */
-            max-width: 1200px; /* Set max-width for large screens */
+            width: 80%;
+            max-width: 1200px;
             margin: 20px auto;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
         }
         
-        /* Content wrapper */
+        /* Content wrapper for side-by-side layout */
         .content-wrapper {
             display: flex;
             justify-content: space-between;
-            width: 100%;  /* Ensure full width usage */
-            height: 85vh;  /* Set a maximum height */
+            width: 100%;
+            height: 85vh;
         }
         
         /* Question Section */
@@ -43,12 +44,11 @@
             background-color: #fff;
             border-radius: 8px;
             padding: 20px;
-            margin-right: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex-grow: 1;  /* Flex grow to ensure it takes available space */
-            min-width: 60%; /* Minimum width to prevent it from getting too narrow */
+            flex-grow: 2;  /* Takes up more space than chatbot */
+            min-width: 60%; /* Ensures question section takes up enough space */
             max-height: 85vh;  /* Height limit */
-            overflow-y: auto;  /* Scrollable content */
+            overflow-y: auto;
         }
         
         /* Chatbot Section */
@@ -57,17 +57,23 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 35%; /* Fixed width for chatbot */
+            flex-grow: 1;  /* Takes less space than question section */
+            width: 35%;  /* Fixed width for chatbot */
             max-height: 85vh; /* Height limit */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         /* Footer styling */
         .footer-container {
-            width: 100%;  /* Full width */
+            width: 100%;
             text-align: center;
             padding: 10px 0;
-            margin-top: 20px;
+            margin-top: auto;
             clear: both;
+            position: relative;  /* Ensures footer stays below the content */
+            bottom: 0;
         }
         
         .footer-text {
