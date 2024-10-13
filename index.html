@@ -7,13 +7,6 @@
     
     <!-- Stylesheet -->
     <style>
-        /* Basic reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         /* General body styles */
         body {
             font-family: Arial, sans-serif;
@@ -41,7 +34,7 @@
             flex-grow: 1;
             width: 100%;
             gap: 20px;
-            min-height: 80vh;  /* Occupy at least 80% of the viewport height */
+            min-height: 80vh;
         }
 
         /* Question section */
@@ -82,6 +75,22 @@
                 flex-direction: column;
             }
         }
+
+        /* Styling for the question form */
+        .question {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .dropdown,
+        input[type="radio"] {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -92,13 +101,137 @@
             <!-- Question Section -->
             <div class="question-section">
                 <h2>Planet Bouncer Questionnaire</h2>
-                <p>Placeholder for questions...</p>
+
+                <!-- Housing Section -->
+                <h3>Housing</h3>
+
+                <div class="question">
+                    <label for="homeType">What type of home do you live in?</label>
+                    <div>
+                        <input type="radio" id="apartment" name="homeType" value="Apartment">
+                        <label for="apartment">Apartment</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="house" name="homeType" value="House">
+                        <label for="house">House</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="condo" name="homeType" value="Condo">
+                        <label for="condo">Condo</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="townhouse" name="homeType" value="Townhouse">
+                        <label for="townhouse">Townhouse</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label for="homeSize">What is the size of your home?</label>
+                    <div>
+                        <input type="radio" id="small" name="homeSize" value="Small">
+                        <label for="small">Less than 60m²</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="medium" name="homeSize" value="Medium">
+                        <label for="medium">Between 60m² and 120m²</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="large" name="homeSize" value="Large">
+                        <label for="large">More than 120m²</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>Is your home well-insulated?</label>
+                    <div>
+                        <input type="radio" id="insulationTrue" name="insulation" value="True">
+                        <label for="insulationTrue">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="insulationFalse" name="insulation" value="False">
+                        <label for="insulationFalse">No</label>
+                    </div>
+                </div>
+
+                <!-- Energy Section -->
+                <h3>Energy Use</h3>
+
+                <div class="question">
+                    <label for="energyUsage">How much electricity do you use per month (in kWh)?</label>
+                    <input type="range" id="energyUsage" name="energyUsage" min="500" max="1500" step="250" value="1000" oninput="document.getElementById('sliderValue').innerText = this.value + ' kWh';">
+                    <p>Electricity usage: <span id="sliderValue">1,000 kWh</span></p>
+                </div>
+
+                <div class="question">
+                    <label for="renewableEnergy">Do you use renewable energy?</label>
+                    <div>
+                        <input type="radio" id="renewableYes" name="renewableEnergy" value="Yes">
+                        <label for="renewableYes">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="renewableNo" name="renewableEnergy" value="No">
+                        <label for="renewableNo">No</label>
+                    </div>
+                </div>
+
+                <!-- Transportation Section -->
+                <h3>Transportation</h3>
+
+                <div class="question">
+                    <label for="vehicleType">Do you own a vehicle? If so, what type?</label>
+                    <div>
+                        <input type="radio" id="vehicleNone" name="vehicleType" value="None">
+                        <label for="vehicleNone">None</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="vehicleGasoline" name="vehicleType" value="Gasoline">
+                        <label for="vehicleGasoline">Gasoline</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="vehicleElectric" name="vehicleType" value="Electric">
+                        <label for="vehicleElectric">Electric</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label for="kilometersDriven">How many kilometers did you drive during the past month?</label>
+                    <input type="range" id="kilometersDriven" name="kilometersDriven" min="0" max="1000" step="250" value="0" oninput="updateKilometersValue(this.value)">
+                    <p>Kilometers driven: <span id="kilometersValue">0-100 km</span></p>
+                </div>
+
+                <!-- Diet Section -->
+                <h3>Diet</h3>
+
+                <div class="question">
+                    <label for="meatDairyConsumption">How often did you consume meat or dairy over the past month?</label>
+                    <div>
+                        <input type="radio" id="meatDaily" name="meatDairyConsumption" value="Daily">
+                        <label for="meatDaily">Daily</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="meatFewTimes" name="meatDairyConsumption" value="A few times a week">
+                        <label for="meatFewTimes">A few times a week</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="meatNever" name="meatDairyConsumption" value="Never">
+                        <label for="meatNever">Never</label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-section">
+                    <button id="submitBtn">Submit</button>
+                </div>
             </div>
 
             <!-- Chatbot Section -->
             <div class="chatbot-section">
                 <h2>Chat with Planet Bouncer</h2>
-                <p>This is where the chatbot will be rendered.</p>
+                <div class="chatbox" id="chatbox"></div>
+                <div class="input-area">
+                    <input type="text" id="userInput" placeholder="Type your message...">
+                    <button id="sendBtn">Send</button>
+                </div>
             </div>
         </div>
 
@@ -107,5 +240,20 @@
             <p>Privacy Policy: Your privacy is important to us. We do not collect any personal information...</p>
         </div>
     </div>
+
+    <script>
+        function updateKilometersValue(value) {
+            const kilometersText = document.getElementById('kilometersValue');
+            if (value == 0) {
+                kilometersText.innerText = '0-100 km';
+            } else if (value == 250) {
+                kilometersText.innerText = '101-500 km';
+            } else if (value == 500) {
+                kilometersText.innerText = '501-1000 km';
+            } else {
+                kilometersText.innerText = '1000+ km';
+            }
+        }
+    </script>
 </body>
 </html>
