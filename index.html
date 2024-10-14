@@ -713,8 +713,16 @@
                 const chatbox = document.getElementById('chatbox');
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
                 
+
                 // Display the result directly in the chatbot
-                const botResponse = `Based on your answers, you would use up Earth's resources by day ${overuseDay} of the month.`;
+                if (overuseDay > 30) {
+                    // Display the special message if the user is within their share of Earth's resources
+                    chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Congratulations, your consumption of Earth's resources is within your share. You're allowed to stay another month!</div>`;
+                } else {
+                    // Display the usual message with the day they would run out of resources
+                    chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Based on your answers, you would use up Earth's resources by day ${overuseDay} of the month.</div>`;
+                }
+                
                 chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;
             });
