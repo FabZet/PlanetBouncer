@@ -262,7 +262,7 @@
                 <h3>Housing</h3>
 
                 <div class="question">
-                    <label class="question-text" for="homeType">What type of home do you live in?</label>
+                    <label class="question-text" for="homeType">1. What type of home do you live in?</label>
                     <div>
                         <input type="radio" id="apartment" name="homeType" value="Apartment" checked>
                         <label class="option-label" for="apartment">Apartment</label>
@@ -282,7 +282,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="homeSize">What is the size of your home?</label>
+                    <label class="question-text" for="homeSize">2. What is the size of your home?</label>
                     <div>
                         <input type="radio" id="small" name="homeSize" value="Small" checked>
                         <label class="option-label" for="small">Less than 60m²</label>
@@ -298,7 +298,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text">Is your home well-insulated?</label>
+                    <label class="question-text">3. Is your home well-insulated?</label>
                     <div>
                         <input type="radio" id="insulationTrue" name="insulation" value="True" checked>
                         <label class="option-label" for="insulationTrue">Yes</label>
@@ -310,7 +310,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="energySaving">Do you use energy-saving appliances?</label>
+                    <label class="question-text" for="energySaving">4. Do you use energy-saving appliances?</label>
                     <div>
                         <input type="radio" id="energySavingYes" name="energySaving" value="Yes" checked>
                         <label class="option-label" for="energySavingYes">Yes</label>
@@ -326,7 +326,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="energySavingFrequency">How often did you use energy-saving appliances over the past 30 days?</label>
+                    <label class="question-text" for="energySavingFrequency">5. How often did you use energy-saving appliances over the past 30 days?</label>
                     <div>
                         <input type="radio" id="allTime" name="energySavingFrequency" value="All the time" checked>
                         <label class="option-label" for="allTime">All the time</label>
@@ -352,13 +352,13 @@
                 <h3>Energy Use</h3>
 
                 <div class="question">
-                    <label class="question-text" for="energyUsage">How much electricity do you use per month (in kWh)?</label>
+                    <label class="question-text" for="energyUsage">6. How much electricity do you use per month (in kWh)?</label>
                     <input type="range" id="energyUsage" name="energyUsage" min="500" max="1500" step="250" value="1000" oninput="updateSliderValue(this.value)">
                     <p>Electricity usage: <span id="sliderValue">1,000 kWh</span></p>
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="renewableEnergy">Do you use renewable energy?</label>
+                    <label class="question-text" for="renewableEnergy">7. Do you use renewable energy?</label>
                     <div>
                         <input type="radio" id="renewableYes" name="renewableEnergy" value="100% renewable" checked>
                         <label class="option-label" for="renewableYes">Yes, 100% renewable</label>
@@ -378,7 +378,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="reduceElectricity">Did you make any efforts to reduce electricity usage during the past 30 days?</label>
+                    <label class="question-text" for="reduceElectricity">8. Did you make any efforts to reduce electricity usage during the past 30 days?</label>
                     <div>
                         <input type="radio" id="reduceYes" name="reduceElectricity" value="Yes" checked>
                         <label class="option-label" for="reduceYes">Yes</label>
@@ -396,7 +396,7 @@
                 <h3>Transportation</h3>
 
                 <div class="question">
-                    <label class="question-text" for="vehicleType">Do you own a vehicle? If so, what type?</label>
+                    <label class="question-text" for="vehicleType">9. Do you own a vehicle? If so, what type?</label>
                     <div>
                         <input type="radio" id="vehicleNone" name="vehicleType" value="None" checked>
                         <label class="option-label" for="vehicleNone">None</label>
@@ -420,13 +420,13 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="kilometersDriven">How many kilometers did you drive during the past month?</label>
+                    <label class="question-text" for="kilometersDriven">10. How many kilometers did you drive during the past month?</label>
                     <input type="range" id="kilometersDriven" name="kilometersDriven" min="0" max="1000" step="250" value="0" oninput="updateKilometersValue(this.value)">
                     <p>Kilometers driven: <span id="kilometersValue">0-100 km</span></p>
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="publicTransport">How often did you use public transportation over the past 30 days?</label>
+                    <label class="question-text" for="publicTransport">11. How often did you use public transportation over the past 30 days?</label>
                     <div>
                         <input type="radio" id="transportDaily" name="publicTransport" value="Daily" checked>
                         <label class="option-label" for="transportDaily">Daily</label>
@@ -450,7 +450,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="flightsTaken">How many flights did you take during the past month?</label>
+                    <label class="question-text" for="flightsTaken">12. How many flights did you take during the past month?</label>
                     <div>
                         <input type="radio" id="flights0" name="flightsTaken" value="0 flights" checked>
                         <label class="option-label" for="flights0">0 flights</label>
@@ -475,7 +475,7 @@
                 <h3>Diet</h3>
 
                 <div class="question">
-                    <label class="question-text" for="meatDairyConsumption">How often did you consume meat or dairy over the past month?</label>
+                    <label class="question-text" for="meatDairyConsumption">13. How often did you consume meat or dairy over the past month?</label>
                     <div>
                         <input type="radio" id="meatDaily" name="meatDairyConsumption" value="Daily">
                         <label class="option-label" for="meatDaily">Daily</label>
@@ -499,7 +499,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="locallySourcedFood">Did you purchase locally sourced food during the past month?</label>
+                    <label class="question-text" for="locallySourcedFood">14. Did you purchase locally sourced food during the past month?</label>
                     <div>
                         <input type="radio" id="localOften" name="locallySourcedFood" value="Yes, often" checked>
                         <label class="option-label" for="localOften">Yes, often</label>
@@ -519,7 +519,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-text" for="recycling">How much waste did you recycle during the past 30 days?</label>
+                    <label class="question-text" for="recycling">15. How much waste did you recycle during the past 30 days?</label>
                     <div>
                         <input type="radio" id="recycle100" name="recycling" value="100%" checked>
                         <label class="option-label" for="recycle100">100%</label>
@@ -544,7 +544,7 @@
                 <h3>Shopping</h3>
 
                 <div class="question">
-                    <label class="question-text" for="consumerGoods">How many new consumer goods (clothing, electronics, furniture, etc.) did you purchase in the past month?</label>
+                    <label class="question-text" for="consumerGoods">16. How many new consumer goods (clothing, electronics, furniture, etc.) did you purchase in the past month?</label>
                     <div>
                         <input type="radio" id="goodsNone" name="consumerGoods" value="None" checked>
                         <label class="option-label" for="goodsNone">None</label>
@@ -564,7 +564,7 @@
                 </div>   
 
                 <div class="question">
-                    <label class="question-text" for="environmentalImpact">Did you make any efforts to reduce your environmental impact when purchasing consumer goods (e.g., buying second-hand, sustainable brands) in the past month?</label>
+                    <label class="question-text" for="environmentalImpact">17. Did you make any efforts to reduce your environmental impact when purchasing consumer goods (e.g., buying second-hand, sustainable brands) in the past month?</label>
                     <div>
                         <input type="radio" id="impactYes" name="environmentalImpact" value="Yes, I prioritized second-hand or sustainable brands" checked>
                         <label class="option-label" for="impactYes">Yes, I prioritized second-hand or sustainable brands</label>
