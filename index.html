@@ -715,12 +715,12 @@
                 
 
                 // Display the result directly in the chatbot
-                if (overuseDay > 30) {
+                if (overuseDay = 30) {
                     // Display the special message if the user is within their share of Earth's resources
-                    chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Congratulations, your consumption of Earth's resources is within your share. You're allowed to stay another month!</div>`;
+                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Congratulations, your consumption of Earth's resources is within your share. You're allowed to stay another month!</div>`;
                 } else {
                     // Display the usual message with the day they would run out of resources
-                    chatbox.innerHTML += `<div class="message bot"><strong>Bot:</strong> Based on your answers, you would use up Earth's resources by day ${overuseDay} of the month.</div>`;
+                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} of the month. You should prepare to be evicted from the planet!</div>`;
                 }
                 
                 chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
