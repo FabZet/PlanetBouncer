@@ -683,30 +683,23 @@
         // Capture all answers and submit
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userData = {
-                homeType: document.getElementById('homeType').value,
-                homeSize: document.getElementById('homeSize').value,
-                insulation: document.querySelector('input[name="insulation"]:checked') 
-                    ? document.querySelector('input[name="insulation"]:checked').value 
-                    : null,  // Handle the case where no radio button is selected
-                appliances: document.querySelector('input[name="energySavingAppliances"]:checked')
-                    ? document.querySelector('input[name="energySavingAppliances"]:checked').value
-                    : null,  // Handle the case where no radio button is selected
+                homeType: document.querySelector('input[name="homeType"]:checked').value,
+                homeSize: document.querySelector('input[name="homeSize"]:checked').value,
+                insulation: document.querySelector('input[name="insulation"]:checked').value,
+                appliances: document.querySelector('input[name="energySavingAppliances"]:checked').value,
                 energyUsage: document.getElementById('energyUsage').value,
-                renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked')
-                    ? document.querySelector('input[name="renewableEnergy"]:checked').value
-                    : null,  // Handle the case where no radio button is selected
-                vehicleType: document.getElementById('vehicleType').value,
+                renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked').value,
+                effortsToReduceElectricity: document.querySelector('input[name="reduceElectricity"]:checked').value,  // New Question
                 kilometersDriven: document.getElementById('kilometersDriven').value,
-                publicTransport: document.querySelector('input[name="publicTransport"]:checked')
-                    ? document.querySelector('input[name="publicTransport"]:checked').value
-                    : null,  // Handle the case where no radio button is selected
-                airTravel: document.getElementById('airTravel').value,
-                dietType: document.getElementById('dietType').value,
-                meatFrequency: document.getElementById('meatFrequency').value,
-                locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked')
-                    ? document.querySelector('input[name="locallySourcedFood"]:checked').value
-                    : null,  // Handle the case where no radio button is selected
-                foodWaste: document.getElementById('foodWaste').value
+                vehicleType: document.querySelector('input[name="vehicleType"]:checked').value,
+                publicTransport: document.querySelector('input[name="publicTransport"]:checked').value,
+                airTravel: document.querySelector('input[name="airTravel"]:checked').value,
+                dietType: document.querySelector('input[name="dietType"]:checked').value,
+                meatFrequency: document.querySelector('input[name="meatFrequency"]:checked').value,
+                locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked').value,
+                foodWaste: document.querySelector('input[name="foodWaste"]:checked').value,
+                consumerGoods: document.querySelector('input[name="consumerGoods"]:checked').value,  // New Question
+                effortsToReduceGoodsImpact: document.querySelector('input[name="reduceGoodsImpact"]:checked').value  // New Question
             };
 
             // Call the calculation function
