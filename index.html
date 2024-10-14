@@ -159,12 +159,19 @@
             margin: 10px 0;
         }
 
-        .submit-section {
-            text-align: center;
-            margin-top: 20px;
+        .submit-section-fixed {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%; /* Full width of the container */
+            background-color: #fff; /* Background color for the fixed bar */
+            padding: 10px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+            text-align: center; /* Center the button */
+            z-index: 100; /* Ensure it stays above other content */
         }
 
-        .submit-section button {
+        .submit-section-fixed button {
             padding: 10px 20px;
             border: none;
             background-color: #405D72;
@@ -173,7 +180,7 @@
             cursor: pointer;
         }
 
-        .submit-section button:hover {
+        .submit-section-fixed button:hover {
             background-color: #758694;
         }
 
@@ -583,11 +590,11 @@
                     </div>
                 </div>
             </div>                  
+        </div>
 
-            <!-- Submit Button -->
-            <div class="submit-section">
-                <button id="submitBtn">Submit</button>
-            </div>
+        <!-- Submit Button -->
+        <div class="submit-section">
+            <button id="submitBtn">Submit</button>
         </div>    
 
         <!-- Chatbot Section -->
