@@ -240,6 +240,22 @@
             .submit-section-sticky button:hover {
                 background-color: #758694;
             }
+
+            #sendBtn {
+                background-color: transparent;  /* No background */
+                border: none;  /* Remove the border */
+                cursor: pointer;  /* Pointer cursor on hover */
+            }
+
+            #sendBtn i {
+                font-size: 20px;  /* Adjust the size of the icon */
+                color: #007BFF;  /* Set the icon color */
+            }
+
+            #sendBtn:hover i {
+                color: #0056b3;  /* Change color on hover */
+            }
+
             
             /* Responsive adjustments */
                     @media (max-width: 768px) {
@@ -606,7 +622,9 @@
                     </div>
                     <div class="input-area">
                         <input type="text" id="userInput" placeholder="Type your message...">
-                        <i class="fas fa-paper-plane"></i> <!-- FontAwesome icon -->
+                        <button id="sendBtn">
+                            <i class="fas fa-paper-plane"></i> <!-- FontAwesome icon -->
+                        </button>
                     </div>
                 </div>    
             </div>
