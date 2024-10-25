@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <script src="calculateResources.js"></script>
+        <script src="https://cdn.openai.com/api/latest.js"></script>
         
         <title>Planet Bouncer - Questionnaire with GPT</title>
         
@@ -749,5 +750,47 @@
                 chatbox.scrollTop = chatbox.scrollHeight;
             });
         </script>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', (event) => {
+              // Initialize the OpenAI Assistant
+              const openai = new OpenAI({
+                apiKey: process.env.OPENAI_API_KEY, // Access the API key from environment variables
+              });
+            
+              const assistantId = process.env.OPENAI_ASSISTANT_ID; // Access the Assistant ID from environment variables
+            
+              // Function to send message to OpenAI Assistant
+              async function sendMessage(message) {
+                try {
+                  const response = await openai.assistants.sendMessage({
+                    assistantId: assistantId,
+                    message: message,
+                  });
+                  return response.data;
+                } catch (error) {
+                  console.error('Error sending message:', error);
+                  return 'Sorry, there was an error sending your message. Please try again.';
+                }
+              }
+            
+              // Handle form submission
+              document.querySelector('#chat-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const input = document.querySelector('#chat-input');
+                const message = input.value;
+                input.value = '';
+            
+                // Display user's message
+                const chatWindow = document.querySelector('#chat-window');
+                chatWindow.innerHTML += `<div class="user-message">${message}</div>`;
+            
+                // Get assistant's response
+                const response = await sendMessage(message);
+                chatWindow.innerHTML += `<div class="assistant-message">${response}</div>`;
+              });
+            });
+        </script>
+        
     </body>
 </html>
