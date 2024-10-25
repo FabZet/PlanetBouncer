@@ -14,8 +14,17 @@ function calculateResourceOveruse(userData) {
     else if (userData.homeSize === "Medium") housingImpact += 15;
     else if (userData.homeSize === "Large") housingImpact += 25;
     
-    if (userData.insulation === "False") housingImpact += 10;
+    if (userData.insulationTrue === "False") housingImpact += 10;
     else housingImpact += 3;
+
+    if (userData.energySavingYes === "Yes") housingImpact -= 1;
+    else if (userData.energySavingNo === "No") housingImpact += 5;
+    else if (userData.energySavingSome === "Some") housingImpact += 3;
+
+    if (userData.energySavingFrequency === "All the time") housingImpact -= 3;
+    else if (userData.energySavingFrequency === "Most of the time") housingImpact += 1;
+    else if (userData.energySavingFrequency === "Rarely") housingImpact += 8;
+    else if (userData.energySavingFrequency === "Never") housingImpact += 15;
 
     // Energy impact
     let energyImpact = 0;
@@ -26,14 +35,16 @@ function calculateResourceOveruse(userData) {
     if (userData.renewableEnergy === "Yes, 100% renewable") energyImpact -= 10;
     else if (userData.renewableEnergy === "Partially renewable") energyImpact += 5;
     else if (userData.renewableEnergy === "No") energyImpact += 15;
+    else if (userData.renewableEnergy === "I don’t know") energyImpact += 10;
 
     // Efforts to reduce electricity usage
     if (userData.electricityReduction === "Yes") energyImpact -= 5;
     
     // Transportation impact
     let transportImpact = 0;
-    if (userData.vehicleType === "Electric") transportImpact += 10;
+    if (userData.vehicleType === "Electric") transportImpact += 5;
     else if (userData.vehicleType === "Gasoline" || userData.vehicleType === "Diesel") transportImpact += 35;
+    else if (userData.vehicleType === "Hybrid") transportImpact += 20;
     else if (userData.vehicleType === "None") transportImpact += 0;
 
     if (userData.kilometersDriven <= 100) transportImpact += 5;
@@ -41,43 +52,46 @@ function calculateResourceOveruse(userData) {
     else if (userData.kilometersDriven <= 1000) transportImpact += 20;
     else transportImpact += 30;
 
-    if (userData.publicTransport === "Daily") transportImpact -= 10;
+    if (userData.publicTransport === "Daily") transportImpact -= 5;
+    else if (userData.publicTransport === "Several times a week") transportImpact += 1;
+    else if (userData.publicTransport === "Once a week") transportImpact += 3;
     else if (userData.publicTransport === "Rarely") transportImpact += 5;
     else if (userData.publicTransport === "Never") transportImpact += 10;
 
-    if (userData.airTravel === "0 flights") transportImpact += 0;
-    else if (userData.airTravel === "1 flight") transportImpact += 15;
-    else if (userData.airTravel === "2 flights") transportImpact += 25;
-    else if (userData.airTravel === "3+ flights") transportImpact += 40;
+    if (userData.flightsTaken === "0 flights") transportImpact += 0;
+    else if (userData.flightsTaken === "1 flight") transportImpact += 15;
+    else if (userData.flightsTaken === "2 flights") transportImpact += 25;
+    else if (userData.flightsTaken === "3+ flights") transportImpact += 40;
 
     // Diet impact
     let dietImpact = 0;
-    if (userData.dietType === "Meat-based") dietImpact += 35;
-    else if (userData.dietType === "Vegetarian") dietImpact += 15;
-    else if (userData.dietType === "Vegan") dietImpact += 5;
-
-    if (userData.meatFrequency === "Daily") dietImpact += 15;
-    else if (userData.meatFrequency === "A few times a week") dietImpact += 8;
-    else if (userData.meatFrequency === "Once a week") dietImpact += 5;
-    else if (userData.meatFrequency === "Rarely") dietImpact += 3;
+    if (userData.meatDairyConsumption === "Daily") dietImpact += 15;
+    else if (userData.meatDairyConsumption === "A few times a week") dietImpact += 8;
+    else if (userData.meatDairyConsumption === "Once a week") dietImpact += 5;
+    else if (userData.meatDairyConsumption === "Rarely") dietImpact += 3;
+    else if (userData.meatDairyConsumption === "Never") dietImpact += 0;
 
     if (userData.locallySourcedFood === "Yes, often") dietImpact -= 5;
-    else if (userData.locallySourcedFood === "No") dietImpact += 10;
+    else if (userData.locallySourcedFood === "Yes, occasionally") dietImpact += 3;
+    else if (userData.locallySourcedFood === "No") dietImpact += 8;
+    else if (userData.locallySourcedFood === "I don’t know") dietImpact += 5;
 
-    if (userData.foodWaste === "A lot") dietImpact += 15;
-    else if (userData.foodWaste === "Most of it") dietImpact += 8;
-    else if (userData.foodWaste === "Some of it") dietImpact += 5;
-    else if (userData.foodWaste === "None") dietImpact -= 5;
+    if (userData.recycling === "100%") dietImpact -= 5;
+    else if (userData.recycling === "Most of it") dietImpact += 3;
+    else if (userData.recycling === "Some of it") dietImpact += 5;
+    else if (userData.recycling === "None") dietImpact += 15;
 
     // Consumer goods impact
     let consumerImpact = 0;
     if (userData.consumerGoods === "More than 5 items") consumerImpact += 15;
     else if (userData.consumerGoods === "3-5 items") consumerImpact += 10;
     else if (userData.consumerGoods === "1-2 items") consumerImpact += 5;
+    else if (userData.consumerGoods === "None") consumerImpact += 0;
     
-    if (userData.consumerGoodsEffort === "Yes, I prioritized second-hand or sustainable brands") consumerImpact -= 5;
-    else if (userData.consumerGoodsEffort === "Occasionally, but not always") consumerImpact += 3;
-    else if (userData.consumerGoodsEffort === "No, I didn’t consider it") consumerImpact += 8;
+    if (userData.environmentalImpact === "Yes, I prioritized second-hand or sustainable brands") consumerImpact -= 5;
+    else if (userData.environmentalImpact === "Occasionally, but not always") consumerImpact += 5;
+    else if (userData.environmentalImpact === "No, I didn’t consider it") consumerImpact += 15;
+    else if (userData.environmentalImpact === "I didn’t purchase any consumer goods") consumerImpact += 0;
 
     // Total resource consumption
     let totalImpact = housingImpact + energyImpact + transportImpact + dietImpact + consumerImpact;
