@@ -7,12 +7,15 @@ function calculateResourceOveruse(userData) {
     let housingImpact = 0;
     if (userData.homeType === "Apartment") housingImpact += 8;
     else if (userData.homeType === "House") housingImpact += 25;
+    else if (userData.homeType === "Condo") housingImpact += 50;
+    else if (userData.homeType === "Townhouse") housingImpact += 20;
 
+    if (userData.homeSize === "Small") housingImpact += 8;
+    else if (userData.homeSize === "Medium") housingImpact += 15;
+    else if (userData.homeSize === "Large") housingImpact += 25;
+    
     if (userData.insulation === "False") housingImpact += 10;
     else housingImpact += 3;
-
-    if (userData.homeSize === "Large") housingImpact += 15;
-    else if (userData.homeSize === "Medium") housingImpact += 8;
 
     // Energy impact
     let energyImpact = 0;
