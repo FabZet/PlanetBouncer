@@ -354,7 +354,7 @@
                         </div>
 
                         <div class="question">
-                            <label class="question-text" for="energySavingFrequency">5. How often did you use energy-saving appliances over the past 30 days?</label>
+                            <label class="question-text" for="energySavingFrequency">5. How often did you use energy-saving appliances during the past month?</label>
                             <div>
                                 <input type="radio" id="allTime" name="energySavingFrequency" value="All the time" checked>
                                 <label class="option-label" for="allTime">All the time</label>
@@ -406,7 +406,7 @@
                         </div>
 
                         <div class="question">
-                            <label class="question-text" for="reduceElectricity">8. Did you make any efforts to reduce electricity usage during the past 30 days?</label>
+                            <label class="question-text" for="reduceElectricity">8. Did you make any efforts to reduce electricity usage during the past month?</label>
                             <div>
                                 <input type="radio" id="reduceYes" name="reduceElectricity" value="Yes" checked>
                                 <label class="option-label" for="reduceYes">Yes</label>
@@ -453,7 +453,7 @@
                         </div>
 
                         <div class="question">
-                            <label class="question-text" for="publicTransport">11. How often did you use public transportation over the past 30 days?</label>
+                            <label class="question-text" for="publicTransport">11. How often did you use public transportation during the past month?</label>
                             <div>
                                 <input type="radio" id="transportDaily" name="publicTransport" value="Daily" checked>
                                 <label class="option-label" for="transportDaily">Daily</label>
@@ -546,7 +546,7 @@
                         </div>
 
                         <div class="question">
-                            <label class="question-text" for="recycling">15. How much waste did you recycle during the past 30 days?</label>
+                            <label class="question-text" for="recycling">15. How much waste did you recycle during the past month?</label>
                             <div>
                                 <input type="radio" id="recycle100" name="recycling" value="100%" checked>
                                 <label class="option-label" for="recycle100">100%</label>
@@ -740,10 +740,10 @@
                 // Display the result directly in the chatbot
                 if (overuseDay === 30) {
                     // Display the special message if the user is within their share of Earth's resources
-                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Congratulations, your consumption of Earth's resources is within your share. You're allowed to stay another month!</div>`;
+                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Congratulations, your last month consumption of Earth's resources is within your share. You're allowed to stay!</div>`;
                 } else {
                     // Display the usual message with the day they would run out of resources
-                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} of the month. You should prepare to be evicted from the planet!</div>`;
+                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!</div>`;
                 }
                 
             //    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
