@@ -675,34 +675,20 @@
             });
 
             // Function to handle user input
-            function handleUserInput() {
+            async function handleUserInput() {
                 const userInput = document.getElementById('userInput').value;
 
-                // If input is empty, do nothing
                 if (!userInput.trim()) return;
 
-                // Display the user message in the chatbox
                 const chatbox = document.getElementById('chatbox');
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
+                document.getElementById('userInput').value = '';  // Clear input field
 
-                // Clear the input field after sending
-                document.getElementById('userInput').value = '';
+                // Send message to OpenAI Assistant
+                const response = await sendMessage(userInput);  // Calls OpenAI API function
 
-                // Simulated bot response
-                handleBotResponse(userInput);
-
-                chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
-            }
-
-            // Placeholder function to simulate bot response
-            function handleBotResponse(userInput) {
-                const chatbox = document.getElementById('chatbox');
-
-                // Example response
-                const botResponse = `You said: "${userInput}". I'm still waiting to be connected... In the meantime, why not try the Questionnaire on the left? Discover when, this month, you’ll have used up your share of Earth's resources and might need to look for a new planet to call home!`;
-
-                // Display the bot response in the chatbox
-                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
+                // Display the Assistant's response in the chatbox
+                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${response}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
             }
         </script>
@@ -752,44 +738,45 @@
         </script>
 
         <script>
-          document.addEventListener('DOMContentLoaded', (event) => {
-              // Initialize the OpenAI Assistant
-              const openai = new OpenAI({
-                apiKey: process.env.OPENAI_API_KEY, // Access the API key from environment variables
-              });
-            
-              const assistantId = process.env.OPENAI_ASSISTANT_ID; // Access the Assistant ID from environment variables
-            
-              // Function to send message to OpenAI Assistant
-              async function sendMessage(message) {
-                try {
-                  const response = await openai.assistants.sendMessage({
-                    assistantId: assistantId,
-                    message: message,
-                  });
-                  return response.data;
-                } catch (error) {
-                  console.error('Error sending message:', error);
-                  return 'Sorry, there was an error sending your message. Please try again.';
+            // OpenAI Assistant
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Initialize the OpenAI Assistant
+                const openai = new OpenAI({
+                    apiKey: ${process.env.OPENAI_API_KEY}, // Access the API key from environment variables
+                });
+                
+                const assistantId = ${process.env.OPENAI_ASSISTANT_ID}; // Access the Assistant ID from environment variables
+                
+                // Function to send message to OpenAI Assistant
+                async function sendMessage(message) {
+                    try {
+                        const response = await openai.assistants.sendMessage({
+                            assistantId: assistantId,
+                            message: message,
+                        });
+                        return response.data;  // Assuming response data contains the Assistant's reply
+                    } catch (error) {
+                        console.error('Error sending message:', error);
+                        return 'Sorry, there was an error sending your message. Please try again.';
+                    }
                 }
-              }
-            
-              // Handle form submission
-              document.querySelector('#chat-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const input = document.querySelector('#chat-input');
-                const message = input.value;
-                input.value = '';
-            
-                // Display user's message
-                const chatWindow = document.querySelector('#chat-window');
-                chatWindow.innerHTML += `<div class="user-message">${message}</div>`;
-            
-                // Get assistant's response
-                const response = await sendMessage(message);
-                chatWindow.innerHTML += `<div class="assistant-message">${response}</div>`;
-              });
-            });
+                
+                // Handle form submission
+                document.querySelector('#chat-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const input = document.querySelector('#chat-input');
+                    const message = input.value;
+                    input.value = '';
+                
+                    // Display user's message
+                    const chatWindow = document.querySelector('#chat-window');
+                    chatWindow.innerHTML += `<div class="user-message">${message}</div>`;
+                
+                    // Get assistant's response
+                    const response = await sendMessage(message);
+                    chatWindow.innerHTML += `<div class="assistant-message">${response}</div>`;
+                });
+                });
         </script>
         
     </body>
