@@ -14,9 +14,10 @@ exports.handler = async function (event) {
         });
 
         const data = await response.json();
+        const assistantReply = data.choices[0].text || "I'm not sure how to respond.";  // Adjust based on API response format
         return {
             statusCode: 200,
-            body: JSON.stringify(data)
+            body: JSON.stringify({ reply: assistantReply })
         };
     } catch (error) {
         console.error('Error:', error);
