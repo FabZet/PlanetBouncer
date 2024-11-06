@@ -661,18 +661,28 @@
         </script>
     
         <script>
-            // Display a welcome message on page load
+            // Display welcome messages on page load
             document.addEventListener('DOMContentLoaded', () => {
                 const chatbox = document.getElementById('chatbox');
-                
-                // Add a welcome message
-                const welcomeMessage = `
-                    <div class="message bot">
-                        <strong>PB:</strong> Welcome to Planet Bouncer! Fill out the questionnaire to the left, and I'll let you know when you have used up your share of Earth's resources and might need to look for a new planet to call home.
-                    </div>
-                `;
-                chatbox.innerHTML += welcomeMessage;
-                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to show the welcome message
+               
+                // Welcome messages to be displayed in sequence
+                const messages = [
+                    "Welcome to Planet Bouncer! Fill out the questionnaire to the left, and I'll let you know when you have used up your share of Earth's resources and might need to look for a new planet to call home.",
+                    "Just reach out to me with any questions or thoughts about the questionnaire."
+                ];
+        
+                // Append each message to the chatbox
+                messages.forEach(text => {
+                    const messageHTML = `
+                        <div class="message bot">
+                            <strong>PB:</strong> ${text}
+                        </div>
+                    `;
+                    chatbox.innerHTML += messageHTML;
+                });
+        
+                // Auto-scroll to show the latest message
+                chatbox.scrollTop = chatbox.scrollHeight;
             });
             
             // Event listener for Send button
