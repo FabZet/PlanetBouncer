@@ -4,7 +4,7 @@ exports.handler = async function (event) {
     const { message } = JSON.parse(event.body);
 
     try {
-        const response = await fetch('https://api.openai.com/v1/assistants/asst_HbhLSqxe7ERaIigKq1WIGlkp/messages', {
+        const response = await fetch('https://api.openai.com/v1/assistants/YOUR_OPENAI_ASSISTANT_ID/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -14,7 +14,9 @@ exports.handler = async function (event) {
         });
 
         const data = await response.json();
-        const assistantReply = data.choices[0].text || "I'm not sure how to respond.";  // Adjust based on API response format
+        console.log(data);  // Log the full response to examine its structure
+
+        const assistantReply = data.choices && data.choices[0] ? data.choices[0].text : "I'm not sure how to respond.";
         return {
             statusCode: 200,
             body: JSON.stringify({ reply: assistantReply })
