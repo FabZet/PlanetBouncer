@@ -746,7 +746,7 @@
                         body: JSON.stringify({ message })
                     });
                     const data = await response.json();
-                    return data;  // Modify if needed to match response format
+                    return data.reply;  // Display only the reply text
                 } catch (error) {
                     console.error('Error sending message:', error);
                     return 'Sorry, there was an error sending your message. Please try again.';
