@@ -661,6 +661,20 @@
         </script>
     
         <script>
+            // Display a welcome message on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                const chatbox = document.getElementById('chatbox');
+                
+                // Add a welcome message
+                const welcomeMessage = `
+                    <div class="message bot">
+                        <strong>PB:</strong> Welcome to Planet Bouncer! Fill out the questionnaire to the left, and I'll let you know when you have used up your share of Earth's resources and might need to look for a new planet to call home.
+                    </div>
+                `;
+                chatbox.innerHTML += welcomeMessage;
+                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to show the welcome message
+            });
+            
             // Event listener for Send button
             document.getElementById('sendBtn').addEventListener('click', function() {
                 handleUserInput();
