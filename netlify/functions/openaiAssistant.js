@@ -4,19 +4,22 @@ exports.handler = async function (event) {
     const { message } = JSON.parse(event.body);
 
     try {
-        const response = await fetch('https://api.openai.com/v1/assistants/asst_HbhLSqxe7ERaIigKq1WIGlkp/messages', {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
             },
-            body: JSON.stringify({ message })
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',  // Use the correct model
+                messages: [{ role: 'user', content: message }]
+            })
         });
 
         const data = await response.json();
         console.log(data);  // Log the full response to examine its structure
 
-        const assistantReply = data.choices && data.choices[0] ? data.choices[0].text : "I'm not sure how to respond.";
+        const assistantReply = data.choices && data.choices[0] ? data.choices[0].message.content : "I'm not sure how to respond.";
         return {
             statusCode: 200,
             body: JSON.stringify({ reply: assistantReply })
