@@ -17,7 +17,6 @@ exports.handler = async function (event) {
         });
 
         const data = await response.json();
-        console.log(data);  // Log the full response to examine its structure
 
         const assistantReply = data.choices && data.choices[0] ? data.choices[0].message.content : "I'm not sure how to respond.";
         return {
