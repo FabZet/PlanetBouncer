@@ -738,45 +738,53 @@
         </script>
 
         <script>
-            // OpenAI Assistant
-            document.addEventListener('DOMContentLoaded', (event) => {
-                // Initialize the OpenAI Assistant
-                const openai = new OpenAI({
-                    apiKey: ${process.env.OPENAI_API_KEY}, // Access the API key from environment variables
-                });
-                
-                const assistantId = ${process.env.OPENAI_ASSISTANT_ID}; // Access the Assistant ID from environment variables
-                
-                // Function to send message to OpenAI Assistant
-                async function sendMessage(message) {
-                    try {
-                        const response = await openai.assistants.sendMessage({
-                            assistantId: assistantId,
-                            message: message,
-                        });
-                        return response.data;  // Assuming response data contains the Assistant's reply
-                    } catch (error) {
-                        console.error('Error sending message:', error);
-                        return 'Sorry, there was an error sending your message. Please try again.';
-                    }
+            // Replace these with your actual keys or add them in your build system
+            const apiKey = "OPENAI_API_KEY";
+            const assistantId = "OPENAI_ASSISTANT_ID";
+
+            // Initialize OpenAI
+            const openai = new OpenAI({
+                apiKey: apiKey,
+            });
+
+            // Function to send a message to the OpenAI Assistant
+            async function sendMessage(message) {
+                try {
+                    const response = await openai.assistants.sendMessage({
+                        assistantId: assistantId,
+                        message: message,
+                    });
+                    return response.data;
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    return 'Sorry, there was an error sending your message. Please try again.';
                 }
-                
-                // Handle form submission
-                document.querySelector('#chat-form').addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const input = document.querySelector('#chat-input');
-                    const message = input.value;
-                    input.value = '';
-                
-                    // Display user's message
-                    const chatWindow = document.querySelector('#chat-window');
-                    chatWindow.innerHTML += `<div class="user-message">${message}</div>`;
-                
-                    // Get assistant's response
-                    const response = await sendMessage(message);
-                    chatWindow.innerHTML += `<div class="assistant-message">${response}</div>`;
-                });
-                });
+            }
+
+            // Handle user input and bot response
+            async function handleUserInput() {
+                const userInput = document.getElementById('userInput').value;
+
+                if (!userInput.trim()) return;
+
+                // Display user input
+                const chatbox = document.getElementById('chatbox');
+                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
+                document.getElementById('userInput').value = '';
+
+                // Get Assistant's response and display it
+                const response = await sendMessage(userInput);
+                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${response}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+            }
+
+            // Event listeners for send button and Enter key
+            document.getElementById('sendBtn').addEventListener('click', handleUserInput);
+            document.getElementById('userInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    handleUserInput();
+                }
+            });
         </script>
         
     </body>
