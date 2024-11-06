@@ -25,7 +25,7 @@ function calculateResourceOveruse(userData) {
     else if (userData.adult === "Two") housingImpact += 8;
     else if (userData.adult === "Three or more") housingImpact += 15;
 
-    if (userData.children === "No cildren") housingImpact += 0;
+    if (userData.children === "No children") housingImpact += 0;
     else if (userData.children === "One child") housingImpact += 5;
     else if (userData.children === "Two children") housingImpact += 15;
     else if (userData.children === "Three or more children") housingImpact += 25;
