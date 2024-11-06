@@ -21,10 +21,14 @@ function calculateResourceOveruse(userData) {
     else if (userData.energySavingNo === "No") housingImpact += 25;
     else if (userData.energySavingSome === "Some") housingImpact += 13;
 
-//    if (userData.energySavingFrequency === "All the time") housingImpact -= 3;
-//    else if (userData.energySavingFrequency === "Most of the time") housingImpact += 1;
-//    else if (userData.energySavingFrequency === "Rarely") housingImpact += 8;
-//    else if (userData.energySavingFrequency === "Never") housingImpact += 15;
+    if (userData.adult === "One") housingImpact += 3;
+    else if (userData.adult === "Two") housingImpact += 8;
+    else if (userData.adult === "Three or more") housingImpact += 15;
+
+    if (userData.children === "No cildren") housingImpact += 0;
+    else if (userData.children === "One child") housingImpact += 5;
+    else if (userData.children === "Two children") housingImpact += 15;
+    else if (userData.children === "Three or more children") housingImpact += 25;
 
     // Energy impact
     let energyImpact = 0;
