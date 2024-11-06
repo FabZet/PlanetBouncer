@@ -738,23 +738,15 @@
         </script>
 
         <script>
-            // Replace these with your actual keys or add them in your build system
-            const apiKey = "OPENAI_API_KEY";
-            const assistantId = "OPENAI_ASSISTANT_ID";
-
-            // Initialize OpenAI
-            const openai = new OpenAI({
-                apiKey: apiKey,
-            });
-
-            // Function to send a message to the OpenAI Assistant
             async function sendMessage(message) {
                 try {
-                    const response = await openai.assistants.sendMessage({
-                        assistantId: assistantId,
-                        message: message,
+                    const response = await fetch('/.netlify/functions/openaiAssistant', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message })
                     });
-                    return response.data;
+                    const data = await response.json();
+                    return data;  // Modify if needed to match response format
                 } catch (error) {
                     console.error('Error sending message:', error);
                     return 'Sorry, there was an error sending your message. Please try again.';
