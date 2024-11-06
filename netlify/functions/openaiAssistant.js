@@ -4,7 +4,7 @@ exports.handler = async function (event) {
     const { message } = JSON.parse(event.body);
 
     try {
-        const response = await fetch('https://api.openai.com/v1/assistants/YOUR_OPENAI_ASSISTANT_ID/messages', {
+        const response = await fetch('https://api.openai.com/v1/assistants/asst_HbhLSqxe7ERaIigKq1WIGlkp/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
