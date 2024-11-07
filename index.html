@@ -115,7 +115,7 @@
 
             h3 {
                 font-family: 'Italiana', sans-serif; /* Google Font */
-                font-size: 30px; /* Adjust the size */
+                font-size: 25px; /* Adjust the size */
                 color: #0F0F0F; 
                 text-align: center;
                 letter-spacing: 1px;
@@ -402,7 +402,7 @@
 
                         <div class="question">
                             <label class="question-text" for="energyUsage">7. How much electricity do you use per month (in kWh)?</label>
-                            <input type="range" id="energyUsage" name="energyUsage" min="500" max="1500" step="250" value="1000" oninput="updateSliderValue(this.value)">
+                            <input type="range" id="energyUsage" name="energyUsage" min="500" max="2500" step="250" value="1000" oninput="updateSliderValue(this.value)">
                             <p>Electricity usage: <span id="sliderValue">1,000 kWh</span></p>
                         </div>
 
@@ -473,7 +473,7 @@
 
                         <div class="question">
                             <label class="question-text" for="kilometersDriven">11. How many kilometers did you drive during the past month?</label>
-                            <input type="range" id="kilometersDriven" name="kilometersDriven" min="0" max="1000" step="250" value="0" oninput="updateKilometersValue(this.value)">
+                            <input type="range" id="kilometersDriven" name="kilometersDriven" min="0" max="1000" step="100" value="0" oninput="updateKilometersValue(this.value)">
                             <p>Kilometers driven: <span id="kilometersValue">0-100 km</span></p>
                         </div>
 
