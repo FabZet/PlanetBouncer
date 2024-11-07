@@ -698,22 +698,38 @@
                     "Welcome to Planet Bouncer!",
                     "Complete the questionnaire and I'll let you know when, based on your lifestyle, you have used up your share of Earth's resources and might need to look for a new planet to call home.",
                     "Most questions relate to your habits in the previous month, while others cover general information. If you need help — whether it's average electricity usage or the meaning of 'CNG' — just ask.",
-                    "Let’s see if you're allowed to stay on planet Earth a little longer!"
+                    "Let's see if you're allowed to stay on planet Earth a little longer!"
                 ];
             
-                // Function to display messages in sequence
+                // Function to display messages with typing effect
                 function displayMessages(messages) {
                     let index = 0;
-        
+            
                     function showNextMessage() {
                         if (index < messages.length) {
-                            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${messages[index]}</div>`;
-                            index++;
-                            chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll for each message
-                            setTimeout(showNextMessage, 2000); // Adjust timing as needed
+                            const message = messages[index];
+                            let charIndex = 0;
+                            const messageDiv = document.createElement('div');
+                            messageDiv.classList.add('message', 'bot');
+                            messageDiv.innerHTML = '<strong>PB:</strong> ';
+                            chatbox.appendChild(messageDiv);
+            
+                            function typeChar() {
+                                if (charIndex < message.length) {
+                                    messageDiv.innerHTML += message.charAt(charIndex);
+                                    charIndex++;
+                                    chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+                                    setTimeout(typeChar, 50); // Adjust typing speed here
+                                } else {
+                                    index++;
+                                    setTimeout(showNextMessage, 500); // Delay before next message
+                                }
+                            }
+            
+                            typeChar();
                         }
                     }
-        
+            
                     showNextMessage();
                 }
             
@@ -743,12 +759,27 @@
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
                 document.getElementById('userInput').value = '';  // Clear input field
         
-                // Send message to OpenAI Assistant
-                const response = await sendMessage(userInput);  // Calls OpenAI API function
+                // Send message to OpenAI Assistant or your chatbot logic
+                // For now, we'll simulate a response
+                const response = "Thank you for your message!";  // Replace with your chatbot response
         
-                // Display the Assistant's response in the chatbox
-                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${response}</div>`;
-                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+                // Display the Assistant's response with typing effect
+                let charIndex = 0;
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'bot');
+                messageDiv.innerHTML = '<strong>PB:</strong> ';
+                chatbox.appendChild(messageDiv);
+        
+                function typeChar() {
+                    if (charIndex < response.length) {
+                        messageDiv.innerHTML += response.charAt(charIndex);
+                        charIndex++;
+                        chatbox.scrollTop = chatbox.scrollHeight;
+                        setTimeout(typeChar, 50); // Adjust typing speed here
+                    }
+                }
+        
+                typeChar();
             }
         </script>
 
