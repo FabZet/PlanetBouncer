@@ -64,15 +64,19 @@
                 flex: 1; /* Equal growth with the question section */
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-                max-height: 75vh;
-                max-width: 35%;
+                max-height: 75vh; /* Limit the section height */
+                max-width: 35%; /* Adjusted width */
             }
             
             /* Chatbox inside chatbot section */
             .chatbox {
-                height: 100%; /* Take full height */
-                overflow-y: auto; /* Allow scroll */
+                flex: 1; /* Take available height in .chatbot-section */
+                overflow-y: auto; /* Enable scrolling */
+                padding: 10px;
+                border: 1px solid #e8e8e8;
+                border-radius: 4px;
+                background-color: #fff;
+                margin-bottom: 20px;
             }
             
             /* Responsive settings */
@@ -100,7 +104,7 @@
                 color: #808080;
             }
 
-            /* Chatbox scroll */
+            /* Chatbox scroll 
             .chatbox {
                 height: 400px;
                 overflow-y: auto;
@@ -109,7 +113,7 @@
                 border-radius: 4px;
                 background-color: #fff;
                 margin-bottom: 20px;
-            }
+            } */
 
             h2 {
                 font-family: 'Italiana', sans-serif; /* Google Font */
@@ -169,7 +173,7 @@
             }
 
             .chatbox {
-             /*   height: 400px; */
+                height: 400px;
                 overflow-y: auto;
                 padding: 10px;
                 border: 1px solid #e8e8e8;
@@ -261,17 +265,17 @@
             }
 
             
-            /* Responsive adjustments */
+            /* Responsive adjustments 
                     @media (max-width: 768px) {
                         .content-wrapper {
-                            flex-direction: column; /* Stack vertically on smaller screens */
+                            flex-direction: column; 
                         }
             
                         .question-section,
                         .chatbot-section {
-                            width: 100%; /* Full width for both sections */
+                            width: 100%; 
                         }
-                    }
+                    } */
         </style>
     </head>
 
