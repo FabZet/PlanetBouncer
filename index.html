@@ -693,7 +693,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 const chatbox = document.getElementById('chatbox');
                
-                // Welcome messages to be displayed in sequence
+                // Messages to display in sequence
                 const messages = [
                     "Welcome to Planet Bouncer!",
                     "Complete the questionnaire and I'll let you know when, based on your lifestyle, you have used up your share of Earth's resources and might need to look for a new planet to call home.",
@@ -701,6 +701,25 @@
                     "If you need help — whether it's average electricity usage or the meaning of 'CNG' — just ask.",
                     "Let’s see if you're allowed to stay on planet Earth a little longer!"
                 ];
+            
+                // Function to display messages in sequence
+                function displayMessages(messages) {
+                    const chatbox = document.getElementById("chatbox");
+                    let index = 0;
+            
+                    function showNextMessage() {
+                        if (index < messages.length) {
+                            chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${messages[index]}</div>`;
+                            index++;
+                            setTimeout(showNextMessage, 2000); // Adjust the timing as needed
+                        }
+                    }
+            
+                    showNextMessage();
+                }
+            
+                // Start the message display sequence
+                displayMessages(messages);
         
                 // Append each message to the chatbox
                 messages.forEach(text => {
