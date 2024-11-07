@@ -673,18 +673,24 @@
 
         <script>
             function updateKilometersValue(value) {
-                const kilometersText = document.getElementById('kilometersValue');
-                if (value == 0) {
-                    kilometersText.innerHTML = '0-100 km';
-                } else if (value == 250) {
-                    kilometersText.innerHTML = '101-500 km';
-                } else if (value == 500) {
-                    kilometersText.innerHTML = '501-1000 km';
-                } else {
-                    kilometersText.innerHTML = '1000+ km';
-                }
+                document.getElementById('kilometersValue').innerHTML = value + ' km';
             }
         </script>
+
+       // <script>
+       //     function updateKilometersValue(value) {
+       //         const kilometersText = document.getElementById('kilometersValue');
+       //         if (value == 0) {
+       //             kilometersText.innerHTML = '0-100 km';
+       //         } else if (value == 250) {
+       //             kilometersText.innerHTML = '101-500 km';
+       //         } else if (value == 500) {
+       //             kilometersText.innerHTML = '501-1000 km';
+       //         } else {
+       //             kilometersText.innerHTML = '1000+ km';
+       //         }
+       //     }
+       // </script>
     
         <script>
             // Display welcome messages on page load
