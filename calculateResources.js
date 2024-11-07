@@ -50,6 +50,7 @@ function calculateResourceOveruse(userData) {
     else if (userData.vehicleType === "Gasoline" || userData.vehicleType === "Diesel") transportImpact += 35;
     else if (userData.vehicleType === "Hybrid") transportImpact += 20;
     else if (userData.vehicleType === "None") transportImpact += 0;
+    else if (userData.vehicleType === "CNG") transportImpact += 5;
 
     if (userData.kilometersDriven <= 100) transportImpact += 5;
     else if (userData.kilometersDriven <= 500) transportImpact += 10;
