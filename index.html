@@ -687,21 +687,6 @@
                 document.getElementById('kilometersValue').innerHTML = value + ' km';
             }
         </script>
-
-       // <script>
-       //     function updateKilometersValue(value) {
-       //         const kilometersText = document.getElementById('kilometersValue');
-       //         if (value == 0) {
-       //             kilometersText.innerHTML = '0-100 km';
-       //         } else if (value == 250) {
-       //             kilometersText.innerHTML = '101-500 km';
-       //         } else if (value == 500) {
-       //             kilometersText.innerHTML = '501-1000 km';
-       //         } else {
-       //             kilometersText.innerHTML = '1000+ km';
-       //         }
-       //     }
-       // </script>
     
         <script>
             // Display welcome messages on page load
@@ -710,8 +695,11 @@
                
                 // Welcome messages to be displayed in sequence
                 const messages = [
-                    "Welcome to Planet Bouncer! Fill out the questionnaire to the left, and I'll let you know when you have used up your share of Earth's resources and might need to look for a new planet to call home.",
-                    "Just reach out to me with any questions or thoughts about the questionnaire."
+                    "Welcome to Planet Bouncer!",
+                    "Complete the questionnaire and I'll let you know when, based on your lifestyle, you have used up your share of Earth's resources and might need to look for a new planet to call home.",
+                    "Most questions relate to your habits in the previous month, while others cover general information.
+                    "If you need help — whether it's average electricity usage or the meaning of 'CNG' — just ask.",
+                    "Let’s see if you're allowed to stay on planet Earth a little longer!"
                 ];
         
                 // Append each message to the chatbox
