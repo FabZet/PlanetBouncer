@@ -645,6 +645,47 @@
                                 <label class="option-label" for="impactNone">I didn’t purchase any consumer goods</label>
                             </div>
                         </div>
+
+                        <div class="question">
+                            <label class="question-text" for="repairItems">19. How often do you try to repair items you already own?</label>
+                            <div>
+                                <input type="radio" id="repairAlways" name="repairItems" value="I always try to repair my things" checked>
+                                <label class="option-label" for="repairAlways">I always try to repair my things</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="repairSometimes" name="repairItems" value="I do some things myself and sometimes send them for professional repair">
+                                <label class="option-label" for="repairSometimes">I do some things myself and sometimes send them for professional repair</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="repairRarely" name="repairItems" value="I rarely repair items; I usually replace them">
+                                <label class="option-label" for="repairRarely">I rarely repair items; I usually replace them</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="repairNever" name="repairItems" value="I don’t repair things at all">
+                                <label class="option-label" for="repairNever">I don’t repair things at all</label>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <label class="question-text" for="repurposeItems">20. How often do you look to repurpose items for new uses?</label>
+                            <div>
+                                <input type="radio" id="repurposeAlways" name="repurposeItems" value="I always look for ways to repurpose items" checked>
+                                <label class="option-label" for="repurposeAlways">I always look for ways to repurpose items</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="repurposeSometimes" name="repurposeItems" value="Sometimes, if it’s easy and useful">
+                                <label class="option-label" for="repurposeSometimes">Sometimes, if it’s easy and useful</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="repurposeRarely" name="repurposeItems" value="I rarely repurpose items">
+                                <label class="option-label" for="repurposeRarely">I rarely repurpose items</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="repurposeNever" name="repurposeItems" value="I don’t repurpose items at all">
+                                <label class="option-label" for="repurposeNever">I don’t repurpose items at all</label>
+                            </div>
+                        </div>
+
                     </div>
                     
                     <!-- Submit Button Section (Fixed at the bottom) -->
@@ -795,7 +836,7 @@
                     children: document.querySelector('input[name="children"]:checked').value,
                     energyUsage: document.getElementById('energyUsage').value,
                     renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked').value,
-                    reduceElectricity: document.querySelector('input[name="reduceElectricity"]:checked').value,  // New Question
+                    reduceElectricity: document.querySelector('input[name="reduceElectricity"]:checked').value,  
                     vehicleType: document.querySelector('input[name="vehicleType"]:checked').value,
                     kilometersDriven: document.getElementById('kilometersDriven').value,
                     publicTransport: document.querySelector('input[name="publicTransport"]:checked').value,
@@ -803,8 +844,10 @@
                     meatDairyConsumption: document.querySelector('input[name="meatDairyConsumption"]:checked').value,
                     locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked').value,
                     recycling: document.querySelector('input[name="recycling"]:checked').value,
-                    consumerGoods: document.querySelector('input[name="consumerGoods"]:checked').value,  // Updated name to match HTML
-                    environmentalImpact: document.querySelector('input[name="environmentalImpact"]:checked').value  // Updated name to match HTML
+                    consumerGoods: document.querySelector('input[name="consumerGoods"]:checked').value, 
+                    environmentalImpact: document.querySelector('input[name="environmentalImpact"]:checked').value,
+                    repairItems: document.querySelector('input[name="repairItems"]:checked').value,
+                    repurposeItems: document.querySelector('input[name="repurposeItems"]:checked').value
                 };
 
                 // Call the calculation function
