@@ -829,6 +829,40 @@
         </script>
 
         <script>
+            // Handle user input and display bot response with typing effect
+            async function handleUserInput() {
+                const userInput = document.getElementById('userInput').value;
+            
+                if (!userInput.trim()) return;
+            
+                // Display user input in the chatbox
+                const chatbox = document.getElementById('chatbox');
+                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
+                document.getElementById('userInput').value = '';  // Clear input field
+            
+                // Get Assistant's response
+                const response = await sendMessage(userInput);
+            
+                // Display the bot's response with typing effect
+                let charIndex = 0;
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'bot');
+                messageDiv.innerHTML = '<strong>PB:</strong> ';
+                chatbox.appendChild(messageDiv);
+            
+                function typeBotChar() {
+                    if (charIndex < response.length) {
+                        messageDiv.innerHTML += response.charAt(charIndex);
+                        charIndex++;
+                        chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+                        setTimeout(typeBotChar, 50); // Adjust typing speed here
+                    }
+                }
+            
+                typeBotChar();
+            }
+            
+            // Function to send message to GPT assistant
             async function sendMessage(message) {
                 try {
                     const response = await fetch('/.netlify/functions/openaiAssistant', {
@@ -843,24 +877,7 @@
                     return 'Sorry, there was an error sending your message. Please try again.';
                 }
             }
-
-            // Handle user input and bot response
-            async function handleUserInput() {
-                const userInput = document.getElementById('userInput').value;
-
-                if (!userInput.trim()) return;
-
-                // Display user input
-                const chatbox = document.getElementById('chatbox');
-                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
-                document.getElementById('userInput').value = '';
-
-                // Get Assistant's response and display it
-                const response = await sendMessage(userInput);
-                chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${response}</div>`;
-                chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
-            }
-
+            
             // Event listeners for send button and Enter key
             document.getElementById('sendBtn').addEventListener('click', handleUserInput);
             document.getElementById('userInput').addEventListener('keypress', function(event) {
