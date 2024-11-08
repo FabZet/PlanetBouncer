@@ -814,13 +814,33 @@
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
                 
 
-                // Display the result directly in the chatbot
+                // Function to display text with typing effect
+                function typeBotMessage(message, chatbox) {
+                    let charIndex = 0;
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', 'bot');
+                    messageDiv.innerHTML = '<strong>PB:</strong> ';
+                    chatbox.appendChild(messageDiv);
+                
+                    function typeChar() {
+                        if (charIndex < message.length) {
+                            messageDiv.innerHTML += message.charAt(charIndex);
+                            charIndex++;
+                            chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+                            setTimeout(typeChar, 20); // Adjust typing speed here if desired
+                        }
+                    }
+                
+                    typeChar();
+                }
+                
+                // Display the result directly in the chatbot with typing effect
                 if (overuseDay === 30) {
-                    // Display the special message if the user is within their share of Earth's resources
-                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Congratulations, your last month consumption of Earth's resources is within your share. You're allowed to stay!</div>`;
+                    const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
+                    typeBotMessage(congratsMessage, chatbox);
                 } else {
-                    // Display the usual message with the day they would run out of resources
-                    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!</div>`;
+                    const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
+                    typeBotMessage(warningMessage, chatbox);
                 }
                 
             //    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
