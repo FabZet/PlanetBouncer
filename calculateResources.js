@@ -98,6 +98,26 @@ function calculateResourceOveruse(userData) {
     else if (userData.environmentalImpact === "No, I didn’t consider it") consumerImpact += 15;
     else if (userData.environmentalImpact === "I didn’t purchase any consumer goods") consumerImpact += 0;
 
+    if (userData.repairItems === "I always try to repair my things") {
+        consumerImpact -= 5; 
+    } else if (userData.repairItems === "I do some things myself and sometimes send them for professional repair") {
+        consumerImpact += 2; 
+    } else if (userData.repairItems === "I rarely repair items; I usually replace them") {
+        consumerImpact += 10; 
+    } else if (userData.repairItems === "I don’t repair things at all") {
+        consumerImpact += 15; 
+    }
+
+    if (userData.repurposeItems === "I always look for ways to repurpose items") {
+        consumerImpact -= 5; 
+    } else if (userData.repurposeItems === "Sometimes, if it’s easy and useful") {
+        consumerImpact += 2; 
+    } else if (userData.repurposeItems === "I rarely repurpose items") {
+        consumerImpact += 10; 
+    } else if (userData.repurposeItems === "I don’t repurpose items at all") {
+        consumerImpact += 15; 
+    }
+
     // Total resource consumption
     let totalImpact = housingImpact + energyImpact + transportImpact + dietImpact + consumerImpact;
 
