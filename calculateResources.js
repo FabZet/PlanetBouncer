@@ -36,7 +36,7 @@ function calculateResourceOveruse(userData) {
     else if (userData.energyUsage > 500 && userData.energyUsage <= 1500) energyImpact += 25;
     else energyImpact += 40;
 
-    if (userData.renewableEnergy === "Yes, 100% renewable") energyImpact -= 10;
+    if (userData.renewableEnergy === "Yes, 100% renewable") energyImpact -= 15;
     else if (userData.renewableEnergy === "Partially renewable") energyImpact += 5;
     else if (userData.renewableEnergy === "No") energyImpact += 15;
     else if (userData.renewableEnergy === "I don’t know") energyImpact += 10;
