@@ -76,7 +76,7 @@
                 display: flex;
                 flex-direction: column;
                 max-height: 75vh; /* Limit the section height */
-                /* max-width: 100%;  Adjusted width */
+                max-width: 35%;  /* Adjusted width */
             }
             
             /* Chatbox inside chatbot section */
@@ -90,14 +90,75 @@
                 margin-bottom: 20px;
             }
             
-            /* Responsive settings */
+            /* General styles for mobile screens */
             @media (max-width: 768px) {
+                /* Stack the content vertically */
                 .content-wrapper {
                     flex-direction: column; /* Stack sections vertically */
+                    gap: 20px; /* Add some space between the sections */
                 }
+            
+                /* Adjust the question and chatbot sections */
                 .question-section,
                 .chatbot-section {
-                    width: 100%; /* Full width */
+                    width: 100%; /* Full width for each section */
+                    max-width: none; /* Remove max-width constraint */
+                    margin-right: 0; /* Remove right margin */
+                    max-height: 60vh; /* Reduce the height on smaller screens */
+                }
+            
+                /* Chatbox adjustments */
+                .chatbox {
+                    max-height: 50vh; /* Allow more room for chat messages */
+                }
+            
+                /* Footer adjustments */
+                .footer-container {
+                    width: 90%; /* Make footer slightly narrower */
+                    font-size: 8px; /* Reduce footer font size on small screens */
+                }
+            
+                /* Adjust font size for headers */
+                h2 {
+                    font-size: 24px; /* Smaller font size for mobile */
+                    text-align: center;
+                }
+            
+                /* Adjust label and radio button font sizes */
+                .question label.question-text {
+                    font-size: 12px; /* Smaller question text font */
+                }
+            
+                .question label.option-label {
+                    font-size: 11px; /* Smaller option label font */
+                }
+            
+                /* Input area adjustments for chatbot */
+                .input-area {
+                    flex-direction: row;
+                    align-items: center;
+                }
+            
+                .input-area input {
+                    padding: 8px;
+                    font-size: 12px;
+                }
+            
+                .input-area button {
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
+            
+                /* Submit button adjustments */
+                .submit-section-sticky {
+                    padding: 10px;
+                    width: 100%;
+                    bottom: 0;
+                }
+            
+                .submit-section-sticky button {
+                    width: 100%; /* Full width button on mobile */
+                    font-size: 16px; /* Larger font for better readability */
                 }
             }
             
