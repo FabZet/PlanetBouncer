@@ -178,6 +178,36 @@
                     font-size: 16px; /* Larger font for better readability */
                 }
             }
+
+            /* Adjustments for smaller mobile screens */
+            @media (max-width: 480px) {
+                .top-bar {
+                    padding-left: 10px; /* Less padding for smaller screens */
+                    padding-top: 10px; /* Adjust padding as needed */
+                    padding-bottom: 10px;
+                }
+                .top-bar h1 {
+                    font-size: 16px; /* Smaller font for mobile */
+                }
+            
+                .content-wrapper {
+                    flex-direction: column; /* Stack sections vertically */
+                    align-items: center; /* Center align for better view */
+                    gap: 10px; /* Add a bit of gap between stacked sections */
+                }
+            
+                .question-section,
+                .chatbot-section {
+                    width: 100%; /* Full width for both sections */
+                    max-width: none; /* Remove max-width to prevent shrinking */
+                    padding: 15px; /* Add padding for readability */
+                    margin: 0 auto; /* Center the sections */
+                }
+            
+                .chatbox {
+                    height: 300px; /* Reduce chatbox height for smaller screens */
+                }
+            }
             
             /* Footer */
             .footer-container {
