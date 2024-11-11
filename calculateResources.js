@@ -23,12 +23,12 @@ function calculateResourceOveruse(userData) {
 
     if (userData.adult === "One") housingImpact += 3;
     else if (userData.adult === "Two") housingImpact += 8;
-    else if (userData.adult === "Three or more") housingImpact += 15;
+    else if (userData.adult === "Three or more") housingImpact += 13;
 
     if (userData.children === "No children") housingImpact += 0;
     else if (userData.children === "One child") housingImpact += 5;
-    else if (userData.children === "Two children") housingImpact += 15;
-    else if (userData.children === "Three or more children") housingImpact += 25;
+    else if (userData.children === "Two children") housingImpact += 10;
+    else if (userData.children === "Three or more children") housingImpact += 20;
 
     // Energy impact
     let energyImpact = 0;
@@ -36,9 +36,9 @@ function calculateResourceOveruse(userData) {
     else if (userData.energyUsage > 500 && userData.energyUsage <= 1500) energyImpact += 25;
     else energyImpact += 40;
 
-    if (userData.renewableEnergy === "Yes, 100% renewable") energyImpact -= 15;
+    if (userData.renewableEnergy === "Yes, 100% renewable") energyImpact -= 30;
     else if (userData.renewableEnergy === "Partially renewable") energyImpact += 5;
-    else if (userData.renewableEnergy === "No") energyImpact += 15;
+    else if (userData.renewableEnergy === "No") energyImpact += 20;
     else if (userData.renewableEnergy === "I don’t know") energyImpact += 10;
 
     // Efforts to reduce electricity usage
