@@ -977,14 +977,31 @@
                     typeChar();
                 }
                 
-                // Display the result directly in the chatbot with typing effect
-                if (overuseDay === 30) {
-                    const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
-                    typeBotMessage(congratsMessage, chatbox);
-                } else {
-                    const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
-                    typeBotMessage(warningMessage, chatbox);
+                // Function to display bot messages with a typing effect and delay
+                function typeBotMessageWithDelay(message, chatbox, delay = 0) {
+                    setTimeout(() => {
+                        typeBotMessage(message, chatbox);
+                    }, delay);
                 }
+                
+                // Display the result in the chatbot with an initial "Calculating..." message
+                document.getElementById('submitBtn').addEventListener('click', function() {
+                    // Initial "Calculating..." message
+                    const calculatingMessage = "Calculating...";
+                    typeBotMessage(calculatingMessage, chatbox);
+                
+                    // Set delay between "Calculating..." and the result message
+                    const delayBetweenMessages = 2000; // Adjust this time (in milliseconds) as needed
+                
+                    // Result messages with delay
+                    if (overuseDay === 30) {
+                        const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
+                        typeBotMessageWithDelay(congratsMessage, chatbox, delayBetweenMessages);
+                    } else {
+                        const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
+                        typeBotMessageWithDelay(warningMessage, chatbox, delayBetweenMessages);
+                    }
+                });
                 
             //    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
                 chatbox.scrollTop = chatbox.scrollHeight;
