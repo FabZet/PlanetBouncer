@@ -936,7 +936,7 @@
                     children: document.querySelector('input[name="children"]:checked').value,
                     energyUsage: document.getElementById('energyUsage').value,
                     renewableEnergy: document.querySelector('input[name="renewableEnergy"]:checked').value,
-                    reduceElectricity: document.querySelector('input[name="reduceElectricity"]:checked').value,  
+                    reduceElectricity: document.querySelector('input[name="reduceElectricity"]:checked').value,
                     vehicleType: document.querySelector('input[name="vehicleType"]:checked').value,
                     kilometersDriven: document.getElementById('kilometersDriven').value,
                     publicTransport: document.querySelector('input[name="publicTransport"]:checked').value,
@@ -944,19 +944,18 @@
                     meatDairyConsumption: document.querySelector('input[name="meatDairyConsumption"]:checked').value,
                     locallySourcedFood: document.querySelector('input[name="locallySourcedFood"]:checked').value,
                     recycling: document.querySelector('input[name="recycling"]:checked').value,
-                    consumerGoods: document.querySelector('input[name="consumerGoods"]:checked').value, 
+                    consumerGoods: document.querySelector('input[name="consumerGoods"]:checked').value,
                     environmentalImpact: document.querySelector('input[name="environmentalImpact"]:checked').value,
                     repairItems: document.querySelector('input[name="repairItems"]:checked').value,
                     repurposeItems: document.querySelector('input[name="repurposeItems"]:checked').value
                 };
-
+        
                 // Call the calculation function
                 const overuseDay = calculateResourceOveruse(userData);
-            
+        
                 const chatbox = document.getElementById('chatbox');
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
-                
-
+        
                 // Function to display text with typing effect
                 function typeBotMessage(message, chatbox) {
                     let charIndex = 0;
@@ -964,7 +963,7 @@
                     messageDiv.classList.add('message', 'bot');
                     messageDiv.innerHTML = '<strong>PB:</strong> ';
                     chatbox.appendChild(messageDiv);
-                
+        
                     function typeChar() {
                         if (charIndex < message.length) {
                             messageDiv.innerHTML += message.charAt(charIndex);
@@ -973,37 +972,34 @@
                             setTimeout(typeChar, 20); // Adjust typing speed here if desired
                         }
                     }
-                
+        
                     typeChar();
                 }
-                
+        
                 // Function to display bot messages with a typing effect and delay
                 function typeBotMessageWithDelay(message, chatbox, delay = 0) {
                     setTimeout(() => {
                         typeBotMessage(message, chatbox);
                     }, delay);
                 }
-                
+        
                 // Display the result in the chatbot with an initial "Calculating..." message
-                document.getElementById('submitBtn').addEventListener('click', function() {
-                    // Initial "Calculating..." message
-                    const calculatingMessage = "Calculating...";
-                    typeBotMessage(calculatingMessage, chatbox);
-                
-                    // Set delay between "Calculating..." and the result message
-                    const delayBetweenMessages = 3000; // Adjust this time (in milliseconds) as needed
-                
-                    // Result messages with delay
-                    if (overuseDay === 30) {
-                        const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
-                        typeBotMessageWithDelay(congratsMessage, chatbox, delayBetweenMessages);
-                    } else {
-                        const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
-                        typeBotMessageWithDelay(warningMessage, chatbox, delayBetweenMessages);
-                    }
-                });
-                
-            //    chatbox.innerHTML += `<div class="message bot"><strong>PB:</strong> ${botResponse}</div>`;
+                const calculatingMessage = "Calculating...";
+                typeBotMessage(calculatingMessage, chatbox);
+        
+                // Set delay between "Calculating..." and the result message
+                const delayBetweenMessages = 3000; // Adjust this time (in milliseconds) as needed
+        
+                // Result messages with delay
+                if (overuseDay === 30) {
+                    const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
+                    typeBotMessageWithDelay(congratsMessage, chatbox, delayBetweenMessages);
+                } else {
+                    const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
+                    typeBotMessageWithDelay(warningMessage, chatbox, delayBetweenMessages);
+                }
+        
+                // Auto-scroll to the latest message
                 chatbox.scrollTop = chatbox.scrollHeight;
             });
         </script>
