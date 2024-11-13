@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 exports.handler = async function (event) {
     const { message } = JSON.parse(event.body);
 
-    // Define the system instructions for the assistant, with URL and questionnaire details
-    const systemInstructions = `
+    // Existing system instructions for general interaction
+    const generalSystemInstructions = `
         Main purpose: 
         Support filling out the questionnaire at https://planetbouncer.netlify.app/ and discussing the results.
 
@@ -53,11 +53,23 @@ exports.handler = async function (event) {
         The initial welcome message for new users:
         PB: Welcome to Planet Bouncer!
         PB: Complete the questionnaire. Most questions focus on your habits last month, with a few covering general information.
-        PB: I’ll calculate if you've overstayed your welcome on Earth. If you’ve burned through your share of resources, I’ll give you the exact date this month when it's time to pack your bags and find a new planet.
+        PB: I'll calculate if you've overstayed your welcome on Earth. If you've burned through your share of resources, I'll give you the exact date this month when it's time to pack your bags and find a new planet.
         PB: If you need help — like the average electricity usage of a Swedish house or the meaning of 'CNG' — feel free to ask.
-        PB: Let's find out if you’re allowed to stay on planet Earth a bit longer!
+        PB: Let's find out if you're allowed to stay on planet Earth a bit longer!
     `;
 
+    // New system instructions specifically for questionnaire result interpretation
+    const questionnaireSystemInstructions = `
+      You are PB, Planet Bouncer. The user has completed an environmental impact questionnaire.
+      Based on the results provided, help the user understand where they can improve their sustainability.
+      Provide actionable tips in the areas where their resource use is highest, and suggest small steps for improvement.
+      `;
+
+    async function sendSummaryToChatbot(summary, context = "general") {
+    // Choose the appropriate system instructions based on context
+    const systemInstructions = context === "questionnaire" ? questionnaireSystemInstructions : generalSystemInstructions;
+    }
+    
     try {
         // Send request to OpenAI API
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
