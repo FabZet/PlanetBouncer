@@ -927,6 +927,19 @@
         </script>
 
         <script>
+            function createSummaryForChatbot(userData, overuseDay) {
+            return `
+                Here’s the user’s environmental impact based on their answers:
+                - Housing: ${userData.homeType}, ${userData.homeSize}, Insulation: ${userData.insulation}.
+                - Energy: ${userData.energyUsage} kWh/month, Renewable energy: ${userData.renewableEnergy}, Reduced usage: ${userData.reduceElectricity}.
+                - Transportation: Vehicle - ${userData.vehicleType}, ${userData.kilometersDriven} km driven, Public transport: ${userData.publicTransport}, Flights: ${userData.flightsTaken}.
+                - Diet: Meat/Dairy Consumption: ${userData.meatDairyConsumption}, Locally sourced food: ${userData.locallySourcedFood}, Recycling rate: ${userData.recycling}.
+                - Shopping: Consumer goods purchased: ${userData.consumerGoods}, Environmental impact considered: ${userData.environmentalImpact}, Repair frequency: ${userData.repairItems}, Repurposing frequency: ${userData.repurposeItems}.
+        
+                The user would exceed their share of Earth’s resources by day ${overuseDay} of this month. Please provide tailored recommendations to help them reduce their impact in high-consumption areas.
+            `;
+        }
+            
             // Capture all answers and submit
             document.getElementById('submitBtn').addEventListener('click', async function() {
                 const userData = {
