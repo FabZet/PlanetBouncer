@@ -959,7 +959,19 @@
                 const summaryForChatbot = createSummaryForChatbot(userData, overuseDay);
 
                 // Send the summary to the OpenAI assistant
-                sendSummaryToChatbot(summaryForChatbot);
+                const response = await fetch('/.netlify/functions/openaiAssistant', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: summaryForChatbot,
+                        context: "questionnaire" // Specify that this is for the questionnaire
+                    })
+                });
+                
+                const data = await response.json();
+                const assistantReply = data.reply;
 
                 const chatbox = document.getElementById('chatbox');
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
