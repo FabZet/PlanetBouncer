@@ -60,46 +60,49 @@ exports.handler = async function (event) {
 
     // New system instructions specifically for questionnaire result interpretation
     const questionnaireSystemInstructions = `
-      You are PB, Planet Bouncer. The user has completed an environmental impact questionnaire.
-      Based on the results provided, help the user understand where they can improve their sustainability.
-      Provide actionable tips in the areas where their resource use is highest, and suggest small steps for improvement.
-      `;
-
+        You are PB, Planet Bouncer. The user has completed an environmental impact questionnaire.
+        Based on the results provided, help the user understand where they can improve their sustainability.
+        Provide actionable tips in the areas where their resource use is highest, and suggest small steps for improvement.
+    `;
+    
     async function sendSummaryToChatbot(summary, context = "general") {
-    // Choose the appropriate system instructions based on context
-    const systemInstructions = context === "questionnaire" ? questionnaireSystemInstructions : generalSystemInstructions;
+        // Choose the appropriate system instructions based on context
+        const systemInstructions = context === "questionnaire" ? questionnaireSystemInstructions : generalSystemInstructions;
+    
+        try {
+            // Send request to OpenAI API
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: [
+                        { role: 'system', content: systemInstructions },
+                        { role: 'user', content: summary }
+                    ]
+                })
+            });
+    
+            const data = await response.json();
+    
+            // Extract assistant's reply or provide a default message
+            const assistantReply = data.choices && data.choices[0] ? data.choices[0].message.content : "I'm not sure how to respond.";
+            return assistantReply;  // Return the reply directly
+        } catch (error) {
+            console.error('Error:', error);
+            return "Error communicating with OpenAI Assistant";
+        }
     }
     
-    try {
-        // Send request to OpenAI API
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-            },
-            body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
-                messages: [
-                    { role: 'system', content: systemInstructions },  // System message with URL and content structure
-                    { role: 'user', content: message }  // User's message
-                ]
-            })
-        });
-
-        const data = await response.json();
-
-        // Extract assistant's reply or provide a default message
-        const assistantReply = data.choices && data.choices[0] ? data.choices[0].message.content : "I'm not sure how to respond.";
+    // Export the function so it can be used in other files if needed
+    exports.handler = async function (event) {
+        const { message, context } = JSON.parse(event.body);
+        const responseMessage = await sendSummaryToChatbot(message, context);
         return {
             statusCode: 200,
-            body: JSON.stringify({ reply: assistantReply })
+            body: JSON.stringify({ reply: responseMessage })
         };
-    } catch (error) {
-        console.error('Error:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: 'Error communicating with OpenAI Assistant' })
-        };
-    }
-};
+    };
