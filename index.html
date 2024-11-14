@@ -928,19 +928,18 @@
 
         <script>
             function createSummaryForChatbot(userData, overuseDay) {
-            return `
-                Here’s the user’s environmental impact based on their answers:
-                - Housing: ${userData.homeType}, ${userData.homeSize}, Insulation: ${userData.insulation}.
-                - Energy: ${userData.energyUsage} kWh/month, Renewable energy: ${userData.renewableEnergy}, Reduced usage: ${userData.reduceElectricity}.
-                - Transportation: Vehicle - ${userData.vehicleType}, ${userData.kilometersDriven} km driven, Public transport: ${userData.publicTransport}, Flights: ${userData.flightsTaken}.
-                - Diet: Meat/Dairy Consumption: ${userData.meatDairyConsumption}, Locally sourced food: ${userData.locallySourcedFood}, Recycling rate: ${userData.recycling}.
-                - Shopping: Consumer goods purchased: ${userData.consumerGoods}, Environmental impact considered: ${userData.environmentalImpact}, Repair frequency: ${userData.repairItems}, Repurposing frequency: ${userData.repurposeItems}.
-        
-                The user would exceed their share of Earth’s resources by day ${overuseDay} of this month. Please provide tailored recommendations to help them reduce their impact in high-consumption areas.
-            `;
-        }
-            
-            // Capture all answers and submit
+                return `
+                    Here’s the user’s environmental impact based on their answers:
+                    - Housing: ${userData.homeType}, ${userData.homeSize}, Insulation: ${userData.insulation}.
+                    - Energy: ${userData.energyUsage} kWh/month, Renewable energy: ${userData.renewableEnergy}, Reduced usage: ${userData.reduceElectricity}.
+                    - Transportation: Vehicle - ${userData.vehicleType}, ${userData.kilometersDriven} km driven, Public transport: ${userData.publicTransport}, Flights: ${userData.flightsTaken}.
+                    - Diet: Meat/Dairy Consumption: ${userData.meatDairyConsumption}, Locally sourced food: ${userData.locallySourcedFood}, Recycling rate: ${userData.recycling}.
+                    - Shopping: Consumer goods purchased: ${userData.consumerGoods}, Environmental impact considered: ${userData.environmentalImpact}, Repair frequency: ${userData.repairItems}, Repurposing frequency: ${userData.repurposeItems}.
+                
+                    The user would exceed their share of Earth’s resources by day ${overuseDay} of this month. Please provide tailored recommendations to help them reduce their impact in high-consumption areas.
+                `;
+            }
+
             document.getElementById('submitBtn').addEventListener('click', async function() {
                 const userData = {
                     homeType: document.querySelector('input[name="homeType"]:checked').value,
@@ -965,42 +964,47 @@
                     repurposeItems: document.querySelector('input[name="repurposeItems"]:checked').value
                 };
 
-                // Calculate overuse day using calculateResourceOveruse from calculateResources.js
+                // Calculate overuse day
                 const overuseDay = calculateResourceOveruse(userData);
-
-                // Prepare summary for the chatbot
                 const summaryForChatbot = createSummaryForChatbot(userData, overuseDay);
 
-                // Send the summary to the OpenAI assistant
-                const response = await fetch('/.netlify/functions/openaiAssistant', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: summaryForChatbot,
-                        context: "questionnaire" // Specify that this is for the questionnaire
-                    })
-                });
-                
-                const data = await response.json();
-                const assistantReply = data.reply;
-
+                // Get chatbox
                 const chatbox = document.getElementById('chatbox');
+                
+                // Display the user's completion message
                 chatbox.innerHTML += `<div class="message user"><strong>You:</strong> I have completed the form.</div>`;
 
-                // Display the result in the chatbot with an initial "Calculating..." message
+                // Display "Calculating..." message with a typing effect immediately after
                 typeBotMessage("Calculating...", chatbox);
-                const delayBetweenMessages = 3000; // Adjust this time as needed
 
-                if (overuseDay === 30) {
-                    const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
-                    typeBotMessageWithDelay(congratsMessage, chatbox, delayBetweenMessages);
-                } else {
-                    const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
-                    typeBotMessageWithDelay(warningMessage, chatbox, delayBetweenMessages);
-                }
+                // Wait 3000 milliseconds before fetching the assistant's reply and showing the result
+                setTimeout(async () => {
+                    // Send the summary to the OpenAI assistant
+                    const response = await fetch('/.netlify/functions/openaiAssistant', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: summaryForChatbot,
+                            context: "questionnaire" 
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    const assistantReply = data.reply;
 
+                    // Determine which final message to display based on the overuseDay
+                    if (overuseDay === 30) {
+                        const congratsMessage = "Congratulations, your last month's consumption of Earth's resources is within your share. You're allowed to stay!";
+                        typeBotMessage(congratsMessage, chatbox);
+                    } else {
+                        const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
+                        typeBotMessage(warningMessage, chatbox);
+                    }
+                }, 3000); // 3000ms delay before showing the final message
+
+                // Typing effect function for bot messages
                 function typeBotMessage(message, chatbox) {
                     let charIndex = 0;
                     const messageDiv = document.createElement('div');
@@ -1012,41 +1016,12 @@
                         if (charIndex < message.length) {
                             messageDiv.innerHTML += message.charAt(charIndex);
                             charIndex++;
-                            chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+                            chatbox.scrollTop = chatbox.scrollHeight;
                             setTimeout(typeChar, 10); // Adjust typing speed here if desired
                         }
                     }
-                
                     typeChar();
                 }
-
-                function typeBotMessageWithDelay(message, chatbox) {
-                    let charIndex = 0;
-                    const messageDiv = document.createElement('div');
-                    messageDiv.classList.add('message', 'bot');
-                    messageDiv.innerHTML = '<strong>PB:</strong> ';
-                    chatbox.appendChild(messageDiv);
-                
-                    function typeChar() {
-                        if (charIndex < message.length) {
-                            messageDiv.innerHTML += message.charAt(charIndex);
-                            charIndex++;
-                            chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
-                            setTimeout(typeChar, 10); // Adjust typing speed here if desired
-                        }
-                    }
-                
-                    typeChar();
-                }
-
-                chatbox.scrollTop = chatbox.scrollHeight;
-
-                // Google Analytics event tracking for Submit button
-                gtag('event', 'submit_click', {
-                    event_category: 'Questionnaire',
-                    event_label: 'Submit Button',
-                    value: 1
-                });
             });
         </script>
 
