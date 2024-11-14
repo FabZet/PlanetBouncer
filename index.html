@@ -1001,6 +1001,25 @@
                     typeBotMessageWithDelay(warningMessage, chatbox, delayBetweenMessages);
                 }
 
+                function typeBotMessage(message, chatbox) {
+                    let charIndex = 0;
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', 'bot');
+                    messageDiv.innerHTML = '<strong>PB:</strong> ';
+                    chatbox.appendChild(messageDiv);
+                
+                    function typeChar() {
+                        if (charIndex < message.length) {
+                            messageDiv.innerHTML += message.charAt(charIndex);
+                            charIndex++;
+                            chatbox.scrollTop = chatbox.scrollHeight;  // Auto-scroll to the bottom
+                            setTimeout(typeChar, 10); // Adjust typing speed here if desired
+                        }
+                    }
+                
+                    typeChar();
+                }
+
                 chatbox.scrollTop = chatbox.scrollHeight;
 
                 // Google Analytics event tracking for Submit button
