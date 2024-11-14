@@ -96,4 +96,4 @@ exports.handler = async function (event) {
             return "Error communicating with OpenAI Assistant";
         }
     }
-  }
+  };
