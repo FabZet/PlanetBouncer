@@ -65,37 +65,34 @@ exports.handler = async function (event) {
         Provide actionable tips in the areas where their resource use is highest, and suggest small steps for improvement.
     `;
     
-    async function sendSummaryToChatbot(summary, context = "general") {
-        // Choose the appropriate system instructions based on context
-        const systemInstructions = context === "questionnaire" ? questionnaireSystemInstructions : generalSystemInstructions;
-    
-        try {
-            // Send request to OpenAI API
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [
-                        { role: 'system', content: systemInstructions },
-                        { role: 'user', content: summary }
-                    ]
-                })
-            });
-    
-            const data = await response.json();
-    
-            // Extract assistant's reply or provide a default message
-            const assistantReply = data.choices && data.choices[0] ? data.choices[0].message.content : "I'm not sure how to respond.";
-            return assistantReply;  // Return the reply directly
-        } catch (error) {
-            console.error('Error:', error);
-            return "Error communicating with OpenAI Assistant";
-        }
-    }
+    async function sendSummaryToChatbot(summary, context = "questionnaire") {
+      const systemInstructions = context === "questionnaire" ? questionnaireSystemInstructions : generalSystemInstructions;
+  
+      try {
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+              },
+              body: JSON.stringify({
+                  model: 'gpt-3.5-turbo',
+                  messages: [
+                      { role: 'system', content: systemInstructions },
+                      { role: 'user', content: summary },
+                      { role: 'user', content: "Please remember these responses for future reference." }
+                  ]
+              })
+          });
+  
+          const data = await response.json();
+          const assistantReply = data.choices && data.choices[0] ? data.choices[0].message.content : "I'm not sure how to respond.";
+          return assistantReply;
+      } catch (error) {
+          console.error('Error:', error);
+          return "Error communicating with OpenAI Assistant";
+      }
+  }  
 
     // Process incoming request and call the assistant
     try {
