@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 exports.handler = async function (event) {
-    const { message } = JSON.parse(event.body);
+    const { message, context } = JSON.parse(event.body);
 
     // Existing system instructions for general interaction
     const generalSystemInstructions = `
@@ -96,4 +96,20 @@ exports.handler = async function (event) {
             return "Error communicating with OpenAI Assistant";
         }
     }
-  };
+
+    // Process incoming request and call the assistant
+    try {
+        const { message, context } = JSON.parse(event.body);
+        const responseMessage = await sendSummaryToChatbot(message, context);
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ reply: responseMessage })
+        };
+    } catch (error) {
+        console.error('JSON parsing or processing error:', error);
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: "Bad Request: Invalid JSON or missing parameters." })
+        };
+    }
+};
