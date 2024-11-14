@@ -1,5 +1,43 @@
 const fetch = require('node-fetch');
 
+// Initialize memory with questionnaire responses after submission
+function initializeMemory(userData, overuseDay) {
+  memory = `
+      Here's the user's environmental impact based on their answers:
+
+      - **Housing**:
+        - Home type: ${userData.homeType}
+        - Home size: ${userData.homeSize}
+        - Insulation: ${userData.insulation}
+        - Adults in household: ${userData.adults}
+        - Children in household: ${userData.children}
+
+      - **Energy Use**:
+        - Monthly electricity usage: ${userData.energyUsage} kWh
+        - Renewable energy usage: ${userData.renewableEnergy}
+        - Efforts to reduce electricity usage: ${userData.reduceElectricity}
+
+      - **Transportation**:
+        - Vehicle type: ${userData.vehicleType}
+        - Kilometers driven in past month: ${userData.kilometersDriven} km
+        - Public transportation usage: ${userData.publicTransport}
+        - Flights taken in past month: ${userData.flightsTaken}
+
+      - **Diet**:
+        - Frequency of meat/dairy consumption: ${userData.meatDairyConsumption}
+        - Locally sourced food purchases: ${userData.locallySourcedFood}
+        - Recycling rate: ${userData.recycling}
+
+      - **Shopping**:
+        - New consumer goods purchased: ${userData.consumerGoods}
+        - Considered environmental impact in purchases: ${userData.environmentalImpact}
+        - Frequency of repairing items: ${userData.repairItems}
+        - Repurposing items for new uses: ${userData.repurposeItems}
+
+      The user would exceed their share of Earth's resources by day ${overuseDay} of this month.
+  `;
+}
+
 exports.handler = async function (event) {
     const { message, context } = JSON.parse(event.body);
 
@@ -65,45 +103,7 @@ exports.handler = async function (event) {
         Provide actionable tips in the areas where their resource use is highest, and suggest small steps for improvement.
     `;
     
-    // Store the initial questionnaire summary as "memory"
     let memory = '';
-
-    function initializeMemory(userData, overuseDay) {
-        memory = `
-            Here’s the user’s environmental impact based on their answers:
-
-            - **Housing**:
-              - Home type: ${userData.homeType}
-              - Home size: ${userData.homeSize}
-              - Insulation: ${userData.insulation}
-              - Adults in household: ${userData.adults}
-              - Children in household: ${userData.children}
-
-            - **Energy Use**:
-              - Monthly electricity usage: ${userData.energyUsage} kWh
-              - Renewable energy usage: ${userData.renewableEnergy}
-              - Efforts to reduce electricity usage: ${userData.reduceElectricity}
-
-            - **Transportation**:
-              - Vehicle type: ${userData.vehicleType}
-              - Kilometers driven in past month: ${userData.kilometersDriven} km
-              - Public transportation usage: ${userData.publicTransport}
-              - Flights taken in past month: ${userData.flightsTaken}
-
-            - **Diet**:
-              - Frequency of meat/dairy consumption: ${userData.meatDairyConsumption}
-              - Locally sourced food purchases: ${userData.locallySourcedFood}
-              - Recycling rate: ${userData.recycling}
-
-            - **Shopping**:
-              - New consumer goods purchased: ${userData.consumerGoods}
-              - Considered environmental impact in purchases: ${userData.environmentalImpact}
-              - Frequency of repairing items: ${userData.repairItems}
-              - Repurposing items for new uses: ${userData.repurposeItems}
-
-            The user would exceed their share of Earth's resources by day ${overuseDay} of this month.
-        `;
-    }
 
     async function sendSummaryToChatbot(summary, followUpQuestion, context = "questionnaire") {
         const systemInstructions = context === "questionnaire" ? questionnaireSystemInstructions : generalSystemInstructions;
