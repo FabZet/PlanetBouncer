@@ -96,13 +96,3 @@ exports.handler = async function (event) {
             return "Error communicating with OpenAI Assistant";
         }
     }
-    
-    // Export the function so it can be used in other files if needed
-    exports.handler = async function (event) {
-        const { message, context } = JSON.parse(event.body);
-        const responseMessage = await sendSummaryToChatbot(message, context);
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ reply: responseMessage })
-        };
-    };
