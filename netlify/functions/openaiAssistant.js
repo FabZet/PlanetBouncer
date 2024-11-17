@@ -203,9 +203,14 @@ async function sendSummaryToChatbot(summary, followUpQuestion, context = "questi
 // Main handler function for the serverless function
 exports.handler = async function (event) {
     try {
-        const { message, context } = JSON.parse(event.body);
-        
-        // Pass `memory` as the first argument, followed by `message` as the follow-up question
+        const { message, context, userData, overuseDay } = JSON.parse(event.body);
+
+        // If `userData` and `overuseDay` are provided, update the memory
+        if (userData && overuseDay) {
+            initializeMemory(userData, overuseDay);
+        }
+
+        // Pass the updated `memory` and the user message to the chatbot
         const responseMessage = await sendSummaryToChatbot(memory, message, context);
 
         return {
