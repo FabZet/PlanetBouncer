@@ -879,51 +879,6 @@
                 // Start the message display sequence
                 displayMessages(messages);
             });
-            
-            // Event listener for Send button
-            document.getElementById('sendBtn').addEventListener('click', function() {
-                handleUserInput();
-            });
-        
-            // Event listener for Enter key
-            document.getElementById('userInput').addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    handleUserInput();
-                }
-            });
-        
-            // Function to handle user input
-            async function handleUserInput() {
-                const userInput = document.getElementById('userInput').value;
-        
-                if (!userInput.trim()) return;
-        
-                const chatbox = document.getElementById('chatbox');
-                chatbox.innerHTML += `<div class="message user"><strong>You:</strong> ${userInput}</div>`;
-                document.getElementById('userInput').value = '';  // Clear input field
-        
-                // Send message to OpenAI Assistant or your chatbot logic
-                // For now, we'll simulate a response
-                const response = "Thank you for your message!";  // Replace with your chatbot response
-        
-                // Display the Assistant's response with typing effect
-                let charIndex = 0;
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', 'bot');
-                messageDiv.innerHTML = '<strong>PB:</strong> ';
-                chatbox.appendChild(messageDiv);
-        
-                function typeChar() {
-                    if (charIndex < response.length) {
-                        messageDiv.innerHTML += response.charAt(charIndex);
-                        charIndex++;
-                        chatbox.scrollTop = chatbox.scrollHeight;
-                        setTimeout(typeChar, 10); // Adjust typing speed here
-                    }
-                }
-        
-                typeChar();
-            }
         </script>
 
         <script>
