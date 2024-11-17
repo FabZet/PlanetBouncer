@@ -60,14 +60,15 @@ const generalSystemInstructions = `
     Welcome message for new users:
     PB: Welcome to Planet Bouncer!
     PB: Complete the questionnaire. I'll calculate if you've overstayed your welcome on Earth.
-    PB: Let’s find out if you're allowed to stay on planet Earth a bit longer!
+    PB: Let's find out if you're allowed to stay on planet Earth a bit longer!
 `;
 
 // New system instructions specifically for questionnaire result interpretation
 const questionnaireSystemInstructions = `
-    You are PB, Planet Bouncer. The user has completed an environmental impact questionnaire.
-    Based on the results provided, help the user understand where they can improve their sustainability.
+    You are PB, Planet Bouncer. The user may have completed an environmental impact questionnaire.
+    If so, use the results provided and help the user understand where they can improve their sustainability.
     Provide actionable tips in the areas where their resource use is highest, and suggest small steps for improvement.
+    If the user haven't, encourage the user to fill out the questionnaire.
 `;
 
 // Function to send the summary and follow-up question to the chatbot
