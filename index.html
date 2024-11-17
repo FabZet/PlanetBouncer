@@ -1044,7 +1044,10 @@
                     const response = await fetch('/.netlify/functions/openaiAssistant', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message })
+                        body: JSON.stringify({ 
+                            message: "What is the average electricity usage of a household?",
+                            context: "general"  // Explicitly set general context
+                         })
                     });
                     const data = await response.json();
                     return data.reply;  // Display only the reply text
