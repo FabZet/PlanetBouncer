@@ -5,7 +5,7 @@ let memory = '';  // Global variable to store the questionnaire responses
 // Function to initialize memory with the user's questionnaire answers
 function initializeMemory(userData, overuseDay) {
     memory = `
-        Here’s the user’s environmental impact based on their answers:
+        Here's the user's environmental impact based on their answers:
 
         - **Housing**:
           - Home type: ${userData.homeType}
@@ -59,8 +59,8 @@ const generalSystemInstructions = `
 
     Welcome message for new users:
     PB: Welcome to Planet Bouncer!
-    PB: Complete the questionnaire. I’ll calculate if you’ve overstayed your welcome on Earth.
-    PB: Let’s find out if you’re allowed to stay on planet Earth a bit longer!
+    PB: Complete the questionnaire. I'll calculate if you've overstayed your welcome on Earth.
+    PB: Let’s find out if you're allowed to stay on planet Earth a bit longer!
 `;
 
 // New system instructions specifically for questionnaire result interpretation
