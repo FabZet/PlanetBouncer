@@ -956,7 +956,7 @@
                 // Display "Calculating..." message with a typing effect immediately after
                 typeBotMessage("Calculating...", chatbox);
 
-                // Wait 3000 milliseconds before fetching the assistant's reply and showing the result
+                // Wait 2000 milliseconds before fetching the assistant's reply and showing the result
                 setTimeout(async () => {
                     // Send the summary to the OpenAI assistant
                     const response = await fetch('/.netlify/functions/openaiAssistant', {
@@ -981,7 +981,7 @@
                         const warningMessage = `Based on your answers, you will exceed your share of Earth's resources by day ${overuseDay} in this month. If you haven't already, you should prepare to be evicted from the planet!`;
                         typeBotMessage(warningMessage, chatbox);
                     }
-                }, 3000); // 3000ms delay before showing the final message
+                }, 2000); // 2000ms delay before showing the final message
 
                 // Typing effect function for bot messages
                 function typeBotMessage(message, chatbox) {
